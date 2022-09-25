@@ -1,13 +1,7 @@
-import { Insumo } from '../insumo/insumo.type';
+import { Receta } from "../receta/receta.type"
 
-export interface Menu {
-    nombre: string;
-    raciones: number;
-    preparaciones: Preparacion[];
-}
-
-export interface Preparacion {
-    tipo: string;
-    nombre: string;
-    insumos: Insumo[];
+export interface Menu{
+    ensalada: Receta,
+    platoDeFondo: Receta,
+    postre: Receta
 }
