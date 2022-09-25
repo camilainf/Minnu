@@ -1,13 +1,14 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-inicio-sesion',
-  templateUrl: './inicio-sesion.component.html',
-  styleUrls: ['./inicio-sesion.component.scss']
+  selector: 'app-registro',
+  templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.scss']
 })
-export class InicioSesionComponent implements OnInit {
+export class RegistroComponent implements OnInit {
   formularioLoginForm: FormGroup = {} as FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router) { }
@@ -19,6 +20,10 @@ export class InicioSesionComponent implements OnInit {
         Validators.pattern(/^.{5,}$/),
         Validators.required
       ])],
+      password2: ['', Validators.compose([
+        Validators.pattern(/^.{5,}$/),
+        Validators.required
+      ])]
     }
     this.formularioLoginForm = this.formBuilder.group(form); 
   }
