@@ -3,6 +3,7 @@ import { InsumosService } from "../insumo/insumos.service";
 import { Injectable } from "@angular/core";
 import { Regimen } from "./regimen.type";
 import { RecetasService } from '../receta/recetas.service';
+import { MenusService } from '../menu/menus.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,28 +11,27 @@ import { RecetasService } from '../receta/recetas.service';
 
 export class RegimenService{
     regimenes: Regimen[] = [];
-    constructor(private recetasService: RecetasService){
-
+    constructor(private menuService: MenusService){
         this.regimenes = [
             {
                 nombre: 'Almuerzo comun',
                 raciones: 30,
-                recetas: recetasService.recetas
+                menu: menuService.menus[0]
             } as Regimen,
             {
                 nombre: 'Cena comun',
                 raciones: 30,
-                recetas: recetasService.recetas
+                menu: menuService.menus[0]
             } as Regimen,
             {
                 nombre: 'Almuerzo Hiposodico',
                 raciones: 120,
-                recetas: recetasService.recetas
+                menu: menuService.menus[0]
             } as Regimen,
             {
                 nombre: 'Cena Hiposodico',
                 raciones: 140,
-                recetas: recetasService.recetas
+                menu: menuService.menus[0]
             } as Regimen,
         ]
     }
