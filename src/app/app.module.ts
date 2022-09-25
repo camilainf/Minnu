@@ -12,6 +12,7 @@ import { CreacioncuentaComponent } from './pages/creacioncuenta/creacioncuenta.c
 import { MinutasComponent } from './pages/minutas/minutas.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { InsumosComponent } from './pages/insumos/insumos.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { InsumosComponent } from './pages/insumos/insumos.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
