@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg ps-5">
     <div class="container-fluid fw-bold">
       <!-- HOME -->
       <a class="navbar-brand" href="/inicio">
@@ -14,40 +14,38 @@
       <!-- LISTA DE ICONOS DE LA DERECHA -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <!-- ITEM INSUMOS -->
+          <!-- REGIMENES --> 
           <li class="nav-item">
-            <a class="nav-link"href="/insumos">
-              <img src="../../assets/images/iconos/insumos.png" width="40" height="40" class="d-inline-block align-top">
+            <a class="nav-link" routerLink="/regimenes">
+              <!-- <img src="../../assets/images/iconos/minutas.png" width="40" height="40" class="d-inline-block align-top" title="Regimenes"> -->
+              Regimenes
             </a>
           </li>
-          <!-- MINUTAS -->
+          <!-- MENUS -->
           <li class="nav-item">
-            <a class="nav-link" href="/minutas">
-              <img src="../../assets/images/iconos/minutas.png" width="40" height="40" class="d-inline-block align-top">
+            <a class="nav-link"routerLink="/menus">
+              <!-- <img src="../../assets/images/iconos/insumos.png" width="40" height="40" class="d-inline-block align-top" title="Menus"> -->
+              Menus
             </a>
           </li>
           <!-- RECETAS -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img src="../../assets/images/iconos/receta.png" width="40" height="40" class="d-inline-block align-top">
+            <a class="nav-link" routerLink="/recetas">
+              <!-- <img src="../../assets/images/iconos/receta.png" width="40" height="40" class="d-inline-block align-top" title="Receta"> -->
+              Recetas
             </a>
           </li>
-          <!-- ITEM PERFIL -->
+          <!-- PERFIL -->
           <li class="nav-item">
-            <a class="nav-link" href="/perfil">
-              <img src="../../assets/images/iconos/perfil.png" width="40" height="40" class="d-inline-block align-top">
+            <a class="nav-link" routerLink="/perfil">
+              <!-- <img src="../../assets/images/iconos/perfil.png" width="40" height="40" class="d-inline-block align-top" title="Perfil"> -->
+              Perfil
             </a>
           </li>
-          <!-- ITEM CONFIGURACION -->
+          <!-- LOGOUT -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img src="../../assets/images/iconos/confi.png" width="40" height="40" class="d-inline-block align-top">
-            </a>
-          </li>
-          <!-- ITEM INICIO SESION -->
-          <li class="nav-item">
-            <a class="nav-link" href="/iniciosesion">
-              <img src="../../assets/images/iconos/logout.png" width="40" height="40" class="d-inline-block align-top">
+            <a class="nav-link" routerLink="/iniciosesion">
+              <img src="../../assets/images/iconos/logout.png" width="22" height="22" class="d-inline-block align-top" title="Cerrar sesion">
             </a>
           </li>
         </ul>
