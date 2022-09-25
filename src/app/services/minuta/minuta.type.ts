@@ -1,8 +1,8 @@
-import { Menu } from '../menu/menu.type';
+import { Regimen } from '../regimen/regimen.type';
 
 export interface Minuta{
     id: number;
     nombreMinuta: string;
-    menus: Menu[];
+    regimenes: Regimen[];
 }
 

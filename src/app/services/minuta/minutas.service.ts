@@ -1,5 +1,5 @@
 import {Minuta} from "./minuta.type"
-import { MenusService } from "../menu/menus.services";
+import { RegimenService } from "../regimen/regimen.services";
 import { Injectable } from "@angular/core";
 
 @Injectable({
@@ -8,27 +8,27 @@ import { Injectable } from "@angular/core";
 
 export class MinutasService{
     minutas : Minuta[] = [];
-    constructor(private menuService:MenusService){
+    constructor(private regimenService:RegimenService){
         this.minutas = [
             {
                 id: 1,
                 nombreMinuta: 'Minuta 1',
-                menus:menuService.menus
+                regimenes:regimenService.regimenes
             } as Minuta,
             {
                 id: 2,
                 nombreMinuta: 'Minuta 2',
-                menus:menuService.menus,
+                regimenes:regimenService.regimenes
             } as Minuta,
             {
                 id: 3,
                 nombreMinuta: 'Minuta 3',
-                menus:menuService.menus
+                regimenes:regimenService.regimenes
             } as Minuta,
             {
                 id: 4,
                 nombreMinuta: 'Minuta 4',
-                menus:menuService.menus
+                regimenes:regimenService.regimenes
             } as Minuta,
         ]
     }

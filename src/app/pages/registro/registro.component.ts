@@ -15,7 +15,10 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     let form = {
-      email: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.pattern(/^.{5,}$/),
+        Validators.required
+      ])],
       password: ['', Validators.compose([
         Validators.pattern(/^.{5,}$/),
         Validators.required
@@ -32,6 +35,8 @@ export class RegistroComponent implements OnInit {
     console.log(this.formularioLoginForm.status);
     if (this.formularioLoginForm.status === 'VALID') {
       this.router.navigate(['/inicio'])
+    } else {
+      console.log('formato incorrecto')
     }
   }
 }
