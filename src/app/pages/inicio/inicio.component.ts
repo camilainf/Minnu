@@ -1,8 +1,9 @@
 import { Insumo } from 'src/app/services/insumo/insumo.type';
-import { Menu } from 'src/app/services/menu/menu.type';
 import { Component, OnInit } from '@angular/core';
 import { InsumosService } from '../../services/insumo/insumos.service';
-import { MenusService } from '../../services/menu/menus.services';
+import { MinutasService } from '../../services/minuta/minutas.service';
+import { Minuta } from '../../services/minuta/minuta.type';
+
 
 @Component({
   selector: 'app-inicio',
@@ -12,12 +13,12 @@ import { MenusService } from '../../services/menu/menus.services';
 export class InicioComponent implements OnInit {
 
   insumos : Insumo[] = [];
-  menus : Menu[] = [];
-  constructor(private insumosService: InsumosService,private menusService: MenusService) {}
+  minutas : Minuta[] = [];
+  constructor(private insumosService: InsumosService,private minutasService: MinutasService) {}
 
   ngOnInit(): void {
     this.insumos = this.insumosService.insumos;
-    this.menus = this.menusService.menus;
+    this.minutas = this.minutasService.minutas;
   }
 
 }
