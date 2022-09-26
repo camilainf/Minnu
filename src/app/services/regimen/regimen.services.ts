@@ -14,24 +14,24 @@ export class RegimenService{
     constructor(private menuService: MenusService){
         this.regimenes = [
             {
-                nombre: 'Almuerzo comun',
-                raciones: 30,
-                menu: menuService.menus[0]
+                tipo: 'Liquido',
+                almuerzo: menuService.menus[0],
+                cena: menuService.menus[1],
             } as Regimen,
             {
-                nombre: 'Cena comun',
-                raciones: 30,
-                menu: menuService.menus[0]
+                tipo: 'Comun',
+                almuerzo: menuService.menus[1],
+                cena: menuService.menus[2],
             } as Regimen,
             {
-                nombre: 'Almuerzo Hiposodico',
-                raciones: 120,
-                menu: menuService.menus[0]
+                tipo: 'Sin residuo',
+                almuerzo: menuService.menus[3],
+                cena: menuService.menus[2],
             } as Regimen,
             {
-                nombre: 'Cena Hiposodico',
-                raciones: 140,
-                menu: menuService.menus[0]
+                tipo: 'Hiposodico',
+                almuerzo: menuService.menus[0],
+                cena: menuService.menus[3],
             } as Regimen,
         ]
     }

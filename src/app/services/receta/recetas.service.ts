@@ -11,8 +11,8 @@ export class RecetasService{
     constructor(private insumosService: InsumosService) {
         this.recetas = [
             {
-                tipo: 'Ensalada',
-                nombre: 'BETARRAGA CEBOLLA',
+                tipo: 'Postre',
+                nombre: 'Jalea',
                 insumos: insumosService.insumos,
             } as Receta,
             {
@@ -22,12 +22,12 @@ export class RecetasService{
             } as Receta,
             {
                 tipo: 'Ensalada',
-                nombre: 'BETARRAGA CEBOLLA',
+                nombre: 'Lechuga con zanahoria',
                 insumos:insumosService.insumos,
             } as Receta,
             {
                 tipo: 'Ensalada',
-                nombre: 'BETARRAGA CEBOLLA',
+                nombre: 'Betarraga con cebolla',
                 insumos:insumosService.insumos,
             } as Receta,
         ];

@@ -1,8 +1,8 @@
 import { Receta } from "../receta/receta.type"
 
 export interface Menu{
-    tipoRegimen: string;
-    ensalada?: Receta,
-    platoDeFondo: Receta,
-    postre: Receta
+    tipo: string;
+    regimen: string;
+    raciones: number;
+    recetas: Receta[];
 }

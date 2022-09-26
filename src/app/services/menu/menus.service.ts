@@ -11,29 +11,29 @@ export class MenusService{
     constructor(private recetaService: RecetasService) {
         this.menus = [
             {   
-                tipoRegimen: 'Almuerzo comun',
-                ensalada: recetaService.recetas[0],
-                platoDeFondo: recetaService.recetas[1],
-                postre: recetaService.recetas[2]
+                tipo: 'almuerzo',
+                regimen: 'comun',
+                raciones: 15,
+                recetas: recetaService.recetas
             } as Menu,
             {   
-                tipoRegimen: 'Cena comun',
-                ensalada: recetaService.recetas[0],
-                platoDeFondo: recetaService.recetas[1],
-                postre: recetaService.recetas[2]
+                tipo: 'cena',
+                regimen: 'vegetariano',
+                raciones: 60,
+                recetas: recetaService.recetas
             } as Menu,
             {   
-                tipoRegimen: 'Almuerzo Hiposodico',
-                ensalada: recetaService.recetas[0],
-                platoDeFondo: recetaService.recetas[1],
-                postre: recetaService.recetas[2]
+                tipo: 'almuerzo',
+                regimen: 'hiposodico',
+                raciones: 20,
+                recetas: recetaService.recetas
             } as Menu,
             {   
-                tipoRegimen: 'Cena Hiposodico',
-                ensalada: recetaService.recetas[0],
-                platoDeFondo: recetaService.recetas[1],
-                postre: recetaService.recetas[2]
-            } as Menu
+                tipo: 'cena',
+                regimen: 'liquido',
+                raciones: 45,
+                recetas: recetaService.recetas
+            } as Menu,
         ]
     }
 }
