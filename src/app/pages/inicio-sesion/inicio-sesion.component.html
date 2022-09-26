@@ -1,31 +1,36 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="fondo-login col-lg-6 col-md-8 col-sm-12 rounded-end mx-auto my-auto">
-                <h2 class="fe-bold text-center mb-4 pt-3 fw-bold">Minnu</h2>
+            <div class="fondo-login col-lg-6 col-md-8 col-sm-12 mx-auto my-auto" style="border-radius: 25px;
+            border: 2px solid rgb(58, 13, 79); padding: 20px;">
+                <h2 class=" fe-bold text-center mb-4 pt-3 fw-bold">Minnu</h2>
                 <h3 class="fe-bold text-center mb-4 pt-3">Bienvenido</h3>
                 <!-- Login -->
-                <form action="#" class="fw-semibold formularioLogin" [formGroup]="formularioLoginForm" (ngSubmit)="iniciarSesion()">
+                <form action="#" class="fw-semibold formularioLogin" [formGroup]="formularioLoginForm"
+                    (ngSubmit)="iniciarSesion()">
                     <div class="mb-4">
-                        <label for="email" class="form-label">Correo electronico</label>
-                        <input type="email" class="form-control" formControlName="email" placeholder="Ejemplo@gmail.com">
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" formControlName="email"
+                            placeholder="Ejemplo@gmail.com">
                     </div>
                     <div class="mb-4">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" formControlName="password" placeholder="Ingresar Contraseña"
+                            id="password"><br>
+                        <input type="button" name="wf" onclick="mostrarContrasena()" value="Ver contraseña">
                     </div>
                     <div class="mb-4 form-check">
                         <input type="checkbox" name="connected" id="" class="form-check-input">
-                        <label for="connected" class="form-check-label">Mantener sesion abierta</label>
+                        <label for="connected" class="form-check-label">Mantener sesión abierta</label>
                     </div>
-    
                     <div class="d-grid">
-                        <button class="w-100 btn btn-lg btn-login-color text-white" type="submit">Iniciar Sesion</button>
+                        <button class="w-100 btn btn-lg btn-login-color text-white" type="submit">Iniciar
+                            Sesión</button>
                     </div>
-    
+
                     <div class="my-3">
-                        <span>No tienes cuenta? <a href="/registro">Crear cuenta</a></span> <br>
-                        <span>Olvidaste tu constraseña? <a href="#">Recuperar password</a></span>
+                        <span>¿No tienes cuenta? <a href="/registro">Crear cuenta</a></span> <br>
+                        <span>¿Olvidaste tu constraseña? <a href="#">Recuperar contraseña</a></span>
                     </div>
                 </form>
             </div>
