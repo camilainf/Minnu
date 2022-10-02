@@ -1,22 +1,29 @@
-/* COLORES LOGO */
-$color-mi: #8861FF;
-$color-nnu: #CC6CCD;
+/* Colores principales */
+$color-morado: #8861FF;
+$color-rosado: #CC6CCD;
+$nav-color: #A286EC;
 
 nav {
-    background-color: rgb(162, 134, 236 );
+    background-color: $nav-color;
 }
-
-
 
 #logo-minnu {
     text-decoration: none;
 }
 
 #mi {
-    color: $color-mi;
+    color: $color-morado;
 }
 
 #nnu {
-    color: $color-nnu;
+    color: $color-rosado;
+}
+
+.nav-item{
+    background-color: $color-morado;
+}
+
+h4{
+    color: white
 }
 
