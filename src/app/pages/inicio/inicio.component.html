@@ -1,19 +1,19 @@
 <app-header></app-header>
 <body>
-    <div class="container-fluid">
+    <div class="container"> 
         <!-- MINUTAS E INSUMOS -->
-        <div class="row">
+        <div class="row ">
             <!-- COLUMNA MINUTAS -->
             <div class="col text-center">
                 <!-- CAJA DE MINUTAS -->
-                <div class="container mt-4 alto-100 border border-1 rounded-4 shadow">
+                <div class="container mt-4 alto-100 border border-1 rounded-4 shadow color-container">
                     <h2 class="text-center mb-3">Minutas</h2>
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let minuta of minutas">
                             <div class="card p-3 mb-3 ph-100">
                                 <div class="card-body">
                                     <h5 class="card-title">{{minuta.nombreMinuta}}</h5>
-                                    <a href="" class="btn btn-success d-grid ">Ver detalles</a>
+                                    <a href="" class="btn btn-secondary d-grid ">Ver detalles</a>
                                 </div>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
             <!-- COLUMNA INSUMOS -->
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <!-- Cajita de insumos -->
-                <div class="container alto-100 mt-4 border border-1 rounded-4 shadow">
+                <div class="container alto-100 mt-4 border border-1 rounded-4 shadow color-container">
                     <div class="col-12">
                         <h2 class="text-center">Insumos</h2>
                     </div>
@@ -32,9 +32,11 @@
                         <!-- INPUT Y LUPA -->
                         <div class="col-12" align="center">
                             <form class="d-flex" role="search">
+                                <!-- INPUT -->
                                 <input class="form-control me-2" type="search" placeholder="Ingrese el nombre"
                                     aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">
+                                <!-- LUPA -->
+                                <button class="btn btn-outline-black border" type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-search" viewBox="0 0 16 16">
                                         <path

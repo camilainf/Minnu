@@ -10,20 +10,16 @@ export class InsumosService{
     constructor(){
         this.insumos = [
             {
-                nombre: 'Acelga',
-                gramos: 80,
+                nombre: 'Acelga'
             } as Insumo,
             {
-                nombre: 'Repollo',
-                gramos: 60,
+                nombre: 'Repollo'
             } as Insumo,
             {
-                nombre: 'Zanahoria',
-                gramos: 80,
+                nombre: 'Zanahoria'
             } as Insumo,
             {
-                nombre: 'Tomate',
-                gramos: 80,
+                nombre: 'Tomate'
             } as Insumo,
         ]
     }

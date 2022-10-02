@@ -26,7 +26,10 @@ export class InicioSesionComponent implements OnInit {
   iniciarSesion() {
     console.log(this.formularioLoginForm.status);
     if (this.formularioLoginForm.status === 'VALID') {
+      console.log('Inicio de sesion exitoso');
       this.router.navigate(['/inicio'])
+    } else {
+      console.log('Faltan datos por ingresar');
     }
   }
 }
