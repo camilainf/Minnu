@@ -10,11 +10,24 @@
                     (ngSubmit)="iniciarSesion()">
                     <div class="mb-4">
                         <label for="email" class="form-label">Correo electrónico</label>
+                        <span *ngIf="formularioLoginForm.controls['email'].invalid && (formularioLoginForm.controls['email'].dirty || formularioLoginForm.controls['email'].touched)" class="alert">
+                            <small class="mensajeError" *ngIf="formularioLoginForm.controls['email'].errors?.['required']">
+                              * Ingrese su email.
+                            </small>
+                        </span>
                         <input type="email" class="form-control" formControlName="email"
                             placeholder="Ejemplo@gmail.com">
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Contraseña</label>
+                        <span *ngIf="formularioLoginForm.controls['password'].invalid && (formularioLoginForm.controls['password'].dirty || formularioLoginForm.controls['password'].touched)" class="alert">
+                            <small class="mensajeError" *ngIf="formularioLoginForm.controls['password'].errors?.['required']">
+                              * Ingrese su contraseña
+                            </small>
+                            <small class="mensajeError" *ngIf="formularioLoginForm.controls['password'].errors?.['pattern']">
+                              * Debe tener mas de 5 caracteres.
+                            </small>
+                        </span>
                         <input type="password" class="form-control" formControlName="password" placeholder="Ingresar Contraseña"
                             id="password"><br>
                         <input type="button" name="wf" onclick="mostrarContrasena()" value="Ver contraseña">
