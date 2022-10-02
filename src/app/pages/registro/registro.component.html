@@ -20,10 +20,26 @@
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Contraseña</label>
+                        <span *ngIf="formularioLoginForm.controls['password'].invalid && (formularioLoginForm.controls['password'].dirty || formularioLoginForm.controls['password'].touched)" class="alert">
+                            <small class="mensajeError" *ngIf="formularioLoginForm.controls['password'].errors?.['required']">
+                              * Ingrese su contraseña
+                            </small>
+                            <small class="mensajeError" *ngIf="formularioLoginForm.controls['password'].errors?.['pattern']">
+                              * Debe tener mas de 5 caracteres.
+                            </small>
+                        </span>
                         <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
                     </div>
                     <div class="mb-2 pb-1">
                         <label for="password" class="form-label">Repita contraseña</label>
+                        <span *ngIf="formularioLoginForm.controls['password'].invalid && (formularioLoginForm.controls['password'].dirty || formularioLoginForm.controls['password'].touched)" class="alert">
+                            <small class="mensajeError" *ngIf="formularioLoginForm.controls['password'].errors?.['required']">
+                              * Ingrese su contraseña
+                            </small>
+                            <small class="mensajeError" *ngIf="formularioLoginForm.controls['password'].errors?.['pattern']">
+                              * Debe tener mas de 5 caracteres.
+                            </small>
+                        </span>
                         <input type="password" class="form-control" formControlName="password2" placeholder="Contraseña">
                     </div>
                     <div class="pt-3 form-check">
