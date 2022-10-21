@@ -7,12 +7,12 @@
         <h1 id="nnu" class="fw-bold">nnu</h1>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <!-- LISTA DE ICONOS DE LA DERECHA -->
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="isCollapsed">
         <ul class="navbar-nav ms-auto">
           <!-- REGIMENES --> 
           <li class="nav-item mx-1 rounded-4">

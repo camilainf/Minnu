@@ -6,20 +6,18 @@
                 <h2 class=" fe-bold text-center mb-4 pt-3 fw-bold">Minnu</h2>
                 <h3 class="fe-bold text-center mb-4 pt-3">Bienvenido</h3>
                 <!-- Login -->
-                <form action="#" class="fw-semibold formularioLogin" [formGroup]="formularioLoginForm"
-                    (ngSubmit)="iniciarSesion()">
+                <form class="fw-semibold formularioLogin" [formGroup]="formularioLoginForm" (ngSubmit)="iniciarSesion()">
                     <div class="mb-4">
-                        <label for="email" class="form-label">Correo electrónico</label>
+                        <label class="form-label">Correo electrónico</label>
                         <span *ngIf="formularioLoginForm.controls['email'].invalid && (formularioLoginForm.controls['email'].dirty || formularioLoginForm.controls['email'].touched)" class="alert">
                             <small class="mensajeError" *ngIf="formularioLoginForm.controls['email'].errors?.['required']">
                               * Ingrese su email.
                             </small>
                         </span>
-                        <input type="email" class="form-control" formControlName="email"
-                            placeholder="Ejemplo@gmail.com">
+                        <input type="text" class="form-control" formControlName="email" placeholder="Ejemplo@gmail.com">
                     </div>
                     <div class="mb-4">
-                        <label for="password" class="form-label">Contraseña</label>
+                        <label class="form-label">Contraseña</label>
                         <span *ngIf="formularioLoginForm.controls['password'].invalid && (formularioLoginForm.controls['password'].dirty || formularioLoginForm.controls['password'].touched)" class="alert">
                             <small class="mensajeError" *ngIf="formularioLoginForm.controls['password'].errors?.['required']">
                               * Ingrese su contraseña
@@ -30,17 +28,14 @@
                         </span>
                         <input type="password" class="form-control" formControlName="password" placeholder="Ingresar Contraseña"
                             id="password"><br>
-                        <input type="button" name="wf" onclick="mostrarContrasena()" value="Ver contraseña">
                     </div>
                     <div class="mb-4 form-check">
                         <input type="checkbox" name="connected" id="" class="form-check-input">
                         <label for="connected" class="form-check-label">Mantener sesión abierta</label>
                     </div>
                     <div class="d-grid">
-                        <button class="w-100 btn btn-lg btn-login-color text-white" type="submit">Iniciar
-                            Sesión</button>
+                        <button class="w-100 btn btn-lg btn-login-color text-white" type="submit" [disabled]="!formularioLoginForm.valid">Iniciar Sesión</button>
                     </div>
-
                     <div class="my-3">
                         <span>¿No tienes cuenta? <a href="/registro">Crear cuenta</a></span> <br>
                         <span>¿Olvidaste tu constraseña? <a href="/passrecover">Recuperar contraseña</a></span>
