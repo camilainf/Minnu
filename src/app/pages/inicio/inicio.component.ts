@@ -11,14 +11,20 @@ import { Minuta } from '../../services/minuta/minuta.type';
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
-
-  insumos : Insumo[] = [];
+  insumos: Insumo[] = [];
   minutas : Minuta[] = [];
+
   constructor(private insumosService: InsumosService,private minutasService: MinutasService) {}
 
   ngOnInit(): void {
-    this.insumos = this.insumosService.insumos;
-    this.minutas = this.minutasService.minutas;
+    this.minutasService.cargarMinutas().subscribe((data)=>{
+      this.minutas = data;
+    })
+
+    this.insumosService.cargarInsumos().subscribe((data)=>{
+      this.insumos = data;
+    })
+    
   }
 
 }

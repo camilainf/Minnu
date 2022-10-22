@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "tipo":"Liquido",
+        "almuerzo": 6,
+        "cena": 4
+    },
+    {
+        "id": 2,
+        "tipo":"Hiposodico",
+        "almuerzo": 3,
+        "cena": 5
+    },
+    {
+        "id": 3,
+        "tipo":"Comun",
+        "almuerzo": 1,
+        "cena": 7
+    }
+]

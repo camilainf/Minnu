@@ -16,8 +16,9 @@ export class RegimenesComponent implements OnInit {
   constructor(private regimenService: RegimenService, private menusService: MenusService) {}
 
   ngOnInit(): void {
-    this.regimenes = this.regimenService.regimenes;
-    this.menus = this.menusService.menus;
+    this.regimenService.cargarRegimenes().subscribe((data)=>{
+      console.log(data);
+      this.regimenes = data;
+    })
   }
-
 }

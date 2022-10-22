@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Insumo } from 'src/app/services/insumo/insumo.type';
+import { InsumosService } from 'src/app/services/insumo/insumos.service';
 
 @Component({
   selector: 'app-insumos',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./insumos.component.scss']
 })
 export class InsumosComponent implements OnInit {
+  insumo: Insumo = {} as Insumo;
+  insumos: Insumo[] = [];
 
-  constructor() { }
+  constructor(private insumosService: InsumosService) {}
 
   ngOnInit(): void {
+    this.insumosService.cargarInsumos().subscribe((data)=>{
+      console.log(data);
+      this.insumos = data as Insumo[];
+    })
   }
-
 }

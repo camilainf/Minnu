@@ -1,15 +1,16 @@
 import { Injectable } from "@angular/core";
-import { Receta } from './receta.type';
-import { InsumosService } from '../../services/insumo/insumos.service';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn:'root'
 })
 
 export class RecetasService{
-    recetas : Receta[] = [];
-    constructor(private insumosService: InsumosService) {
-        this.recetas = [
+    recetasUrl : string = '../assets/info/recetas.json';
+
+    constructor(private httpClient:HttpClient) {
+        /* this.recetas = [
             {
                 tipo: 'Postre',
                 nombre: 'Jalea',
@@ -30,6 +31,14 @@ export class RecetasService{
                 nombre: 'Betarraga con cebolla',
                 insumos:insumosService.insumos,
             } as Receta,
-        ];
+        ]; */
+    }
+
+    /* cargarInsumos(): Observable<any> {
+        return this.httpClient.get(this.insumosUrl);
+    } */
+
+    cargarRecetas(): Observable<any> {
+        return this.httpClient.get(this.recetasUrl);
     }
 }

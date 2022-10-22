@@ -7,13 +7,17 @@ import { Receta } from 'src/app/services/receta/receta.type';
   templateUrl: './recetas.component.html',
   styleUrls: ['./recetas.component.scss']
 })
-export class RecetasComponent implements OnInit {
 
+export class RecetasComponent implements OnInit {
   recetas: Receta[] = [];
-  constructor(private recetasService: RecetasService) { }
+
+  constructor(private recetasService: RecetasService) {}
 
   ngOnInit(): void {
-    this.recetas = this.recetasService.recetas;
+    this.recetasService.cargarRecetas().subscribe((data)=>{
+      console.log(data);
+      this.recetas = data as Receta[];
+    })
   }
 
 }

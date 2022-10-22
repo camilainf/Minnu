@@ -1,0 +1,12 @@
+[
+    {
+        "id":1,
+        "nombreMinuta": "Minuta 1",
+        "regimenes": [1,2,3]
+    },
+    {
+        "id":2,
+        "nombreMinuta": "Minuta 2",
+        "regimenes": [3,2,1]
+    }
+]

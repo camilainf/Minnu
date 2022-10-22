@@ -15,6 +15,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { MenusComponent } from './pages/menus/menus.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
 import { RegimenesComponent } from './pages/regimenes/regimenes.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { RegimenesComponent } from './pages/regimenes/regimenes.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
