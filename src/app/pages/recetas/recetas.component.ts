@@ -15,7 +15,6 @@ export class RecetasComponent implements OnInit {
 
   ngOnInit(): void {
     this.recetasService.cargarRecetas().subscribe((data)=>{
-      console.log(data);
       this.recetas = data as Receta[];
     })
   }

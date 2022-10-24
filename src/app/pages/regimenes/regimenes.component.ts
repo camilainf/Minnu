@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Regimen } from "../../services/regimen/regimen.type";
 import { RegimenService } from "../../services/regimen/regimen.services";
+import { MenusService } from 'src/app/services/menu/menus.service';
 import { Menu } from 'src/app/services/menu/menu.type';
-import { MenusService } from '../../services/menu/menus.service';
 
 @Component({
   selector: 'app-regimenes',
@@ -11,14 +11,30 @@ import { MenusService } from '../../services/menu/menus.service';
 })
 export class RegimenesComponent implements OnInit {
   regimenes : Regimen[] = [];
-  menus : Menu[] = [];
+  menus: Menu[] = [];
 
-  constructor(private regimenService: RegimenService, private menusService: MenusService) {}
+  constructor(private regimenService: RegimenService, private menuService: MenusService) {}
 
   ngOnInit(): void {
     this.regimenService.cargarRegimenes().subscribe((data)=>{
-      console.log(data);
+      
       this.regimenes = data;
     })
+
+    this.menuService.cargarMenus().subscribe((data)=>{
+      this.menus = data;
+    })
   }
+
+  cantidadRaciones(regimen: Regimen): number {
+    let raciones = 0;
+
+    let almuerzo = this.menuService.getMenuById(regimen.almuerzo, this.menus);
+    let cena = this.menuService.getMenuById(regimen.cena, this.menus);
+
+    raciones = almuerzo.raciones + cena.raciones;
+    return raciones;
+
+  }
+
 }
