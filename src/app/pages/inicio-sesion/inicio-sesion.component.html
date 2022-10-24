@@ -11,7 +11,10 @@
                         <label class="form-label">Correo electrónico</label>
                         <span *ngIf="formularioLoginForm.controls['email'].invalid && (formularioLoginForm.controls['email'].dirty || formularioLoginForm.controls['email'].touched)" class="alert">
                             <small class="mensajeError" *ngIf="formularioLoginForm.controls['email'].errors?.['required']">
-                              * Ingrese su email.
+                                * Ingrese su email.
+                            </small>
+                            <small class="mensajeError" *ngIf="formularioLoginForm.controls['email'].errors?.['pattern']">
+                                * Escriba un correo en formato valido (ejemplo@gmail.com)
                             </small>
                         </span>
                         <input type="text" class="form-control" formControlName="email" placeholder="Ejemplo@gmail.com">
@@ -23,7 +26,7 @@
                               * Ingrese su contraseña
                             </small>
                             <small class="mensajeError" *ngIf="formularioLoginForm.controls['password'].errors?.['pattern']">
-                              * Debe tener mas de 5 caracteres.
+                              * Debe tener mas de 6 caracteres.
                             </small>
                         </span>
                         <input type="password" class="form-control" formControlName="password" placeholder="Ingresar Contraseña"
