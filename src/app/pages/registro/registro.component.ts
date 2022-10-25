@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, ValidationErrors} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl, FormControl, ValidatorFn, Validator} from '@angular/forms';
 import { Router } from "@angular/router";
 
 @Component({
@@ -14,22 +14,18 @@ export class RegistroComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-    let form = {
-      email: ['', Validators.compose([
-        Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/),
-        Validators.required,
-        Validators.email
-      ])],
-      password: ['', Validators.compose([
-        Validators.pattern(/^.{6,}$/),
-        Validators.required
-      ])],
-      copyPassword: ['', Validators.compose([
-        Validators.pattern(/^.{6,}$/),
-        Validators.required,
-      ])]
-    }
-    this.formRegistro = this.formBuilder.group(form,{validator:this.checkPass});
+    let formato = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+
+    this.formRegistro = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.email, Validators.required,Validators.pattern(formato)])],
+      passwords: this.formBuilder.group({
+        password: ['', Validators.compose([Validators.pattern(/^.{6,}$/), Validators.required])],
+        copyPassword: ['', Validators.compose([Validators.pattern(/^.{6,}$/), Validators.required])]
+      },
+        {validators: this.checkPass}
+      )
+    })
+
   }
 
   signIn() {
@@ -39,11 +35,19 @@ export class RegistroComponent implements OnInit {
     } 
   }
 
-
-  checkPass(group: FormGroup):  ValidationErrors | null {
-    let pass = group.controls['password'].value;
-    let copyPass = group.controls['copyPassword'].value;
-    return pass === copyPass ? null : { notSame: false }
+  checkPass: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    let pass = control.get('password');
+    let confirmPassword = control.get('copyPassword');
+  
+    return pass!.value === confirmPassword!.value ? null : { notSame: true };
+  };
+  
+  get controls() {
+    return this.formRegistro.controls;
+  }
+  
+  get passControls() {
+    return ((this.formRegistro.get('passwords') as FormGroup).controls);
   }
 
 }

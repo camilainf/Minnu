@@ -29,35 +29,33 @@
                     </div>
 
                     <!-- CONTRASEÑA -->
-                    <div class="mb-4 form-group">
+                    <div class="mb-4 form-group" formGroupName="passwords">
                         <label for="password" class="form-label">Contraseña</label>
-                        <span *ngIf="formRegistro.controls['password'].invalid && (formRegistro.controls['password'].dirty || formRegistro.controls['password'].touched)" class="alert">
-                            <small class="mensajeError" *ngIf="formRegistro.controls['password'].errors?.['required']">
+                        <span *ngIf="passControls['password'].invalid && (passControls['password'].dirty || passControls['password'].touched)" class="alert">
+                            <small class="mensajeError" *ngIf="passControls['password'].errors?.['required']">
                                 * Ingrese su contraseña
                             </small>
-                            <small class="mensajeError" *ngIf="formRegistro.controls['password'].errors?.['pattern']">
+                            <small class="mensajeError" *ngIf="passControls['password'].errors?.['pattern']">
                                 * Debe tener más de 6 caracteres.
                             </small>
                         </span>
                         <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
                     </div>
-                    <!-- COPIA DE CONTRASEÑA -->
-                    <div class="mb-2 pb-1 form-group">
+                    <!-- CONFIRMA LA CONTRASEÑA -->
+                    <div class="mb-2 pb-1 form-group" formGroupName="passwords">
                         <label for="copyPassword" class="form-label">Confirme su contraseña</label>
-                        <span *ngIf="formRegistro.controls['copyPassword'].invalid && (formRegistro.controls['copyPassword'].dirty || formRegistro.controls['copyPassword'].touched)" class="alert">
-                            <small class="mensajeError" *ngIf="formRegistro.controls['copyPassword'].errors?.['required']">
-                                * Ingrese su contraseña
-                            </small>
-                            <small class="mensajeError" *ngIf="formRegistro.controls['copyPassword'].errors?.['checkPass']">
-                                * Su contraseña debe coincidir.
+                        <span *ngIf="formRegistro.hasError('notSame', 'passwords')" class="alert">
+                            <small class="mensajeError">
+                                * Contraseña no coincide
                             </small>
                         </span>
                         <input type="password" class="form-control" formControlName="copyPassword" placeholder="contraseña" id="copyPassword">
                     </div>
+
+                    <!-- CHECK BOX -->
                     <div class="pt-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label mb-4" for="exampleCheck1">He leído y acepto los Términos y Condiciones y la
-                            Política de Seguridad y Privacidad de WeFood</label>
+                        <label class="form-check-label mb-4" for="exampleCheck1">He leído y acepto los términos y condiciones y la política de seguridad y privacidad</label>
                     </div>
                     <div class="d-grid pb-4">
                         <button class="w-100 btn btn-lg btn-login-color text-white" type="submit"  [disabled]="!formRegistro.valid">Crear cuenta</button>
