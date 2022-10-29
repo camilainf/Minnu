@@ -7,13 +7,43 @@
             <div class="col text-center">
                 <!-- CAJA DE MINUTAS -->
                 <div class="container mt-4 alto-100 border border-1 rounded-4 shadow color-container">
-                    <h2 class="text-center mb-3">Minutas</h2>
+                    <div class="row my-4">
+                        <div class="col-6" align="end">
+                            <span class=" h2 mb-3">Minutas</span>
+                        </div>
+                        <div class="col-6">
+                            <form class="d-flex ps-5 pe-5" role="search">
+                                <!-- input buscador -->
+                                <input class="form-control me-2 border border-dark" type="search" placeholder=""
+                                    aria-label="Search">
+                                <!-- boton buscar -->
+                                <button class="btn btn-outline-black border border-dark me-2" type="submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-search" viewBox="0 0 16 16">
+                                        <path
+                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
+                                </button>
+                                <!-- boton agregar -->
+                                <button class="btn btn-outline-black border border-dark me-2" type="submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                      </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let minuta of minutas">
                             <div class="card p-3 mb-3 ph-100">
                                 <div class="card-body">
                                     <h5 class="card-title">{{minuta.nombreMinuta}}</h5>
-                                    <a href="" class="btn btn-secondary d-grid ">Ver detalles</a>
+                                    <!-- Modal -->
+                                    <button type="button" (click)="openFormModal()" class="btn btn-dark">
+                                        Ver detalles
+                                    </button>
+                                    <!-- <a href="" class="btn btn-secondary d-grid ">Ver detalles</a> -->
                                 </div>
                             </div>
                         </div>
@@ -65,3 +95,39 @@
         </div>
     </div>
 </body>
+
+
+
+<!--form modal-->
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bootstrp Modal</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h3>Aquí saldran los detalles de la minuta, con sus regimenes correspondientes</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="saveSomeThing()">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
