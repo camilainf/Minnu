@@ -3,6 +3,7 @@ import { Regimen } from "../../services/regimen/regimen.type";
 import { RegimenService } from "../../services/regimen/regimen.services";
 import { MenusService } from 'src/app/services/menu/menus.service';
 import { Menu } from 'src/app/services/menu/menu.type';
+declare var window : any;
 
 @Component({
   selector: 'app-regimenes',
@@ -10,6 +11,7 @@ import { Menu } from 'src/app/services/menu/menu.type';
   styleUrls: ['./regimenes.component.scss']
 })
 export class RegimenesComponent implements OnInit {
+  formModal: any;
   regimenes : Regimen[] = [];
   menus: Menu[] = [];
 
@@ -24,6 +26,10 @@ export class RegimenesComponent implements OnInit {
     this.menuService.cargarMenus().subscribe((data)=>{
       this.menus = data;
     })
+
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('myModal')
+    )
   }
 
   cantidadRaciones(regimen: Regimen): number {
@@ -35,6 +41,14 @@ export class RegimenesComponent implements OnInit {
     raciones = almuerzo.raciones + cena.raciones;
     return raciones;
 
+  }
+
+  openFormModal() {
+    this.formModal.show();
+  }
+
+  saveSomeThing() {
+    this.formModal.hide();
   }
 
 }
