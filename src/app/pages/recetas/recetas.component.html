@@ -38,7 +38,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{receta.nombre}}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{receta.tipo}}</h6>
-                                    <a href="" class="btn btn-secondary d-grid ">Ver detalles</a>
+                                    <button type="button" (click)="openFormModal()" class="btn btn-dark">
+                                        Ver detalles
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -48,3 +50,37 @@
         </div>
     </div>
 </body>
+
+<!--form modal-->
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bootstrp Modal</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h3>Aquí saldran los detalles de la receta, con sus insumos</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="saveSomeThing()">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

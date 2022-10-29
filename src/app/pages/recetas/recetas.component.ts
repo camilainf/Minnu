@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecetasService } from '../../services/receta/recetas.service';
 import { Receta } from 'src/app/services/receta/receta.type';
+declare var window : any; 
 
 @Component({
   selector: 'app-recetas',
@@ -9,6 +10,7 @@ import { Receta } from 'src/app/services/receta/receta.type';
 })
 
 export class RecetasComponent implements OnInit {
+  formModal: any;
   recetas: Receta[] = [];
 
   constructor(private recetasService: RecetasService) {}
@@ -17,6 +19,18 @@ export class RecetasComponent implements OnInit {
     this.recetasService.cargarRecetas().subscribe((data)=>{
       this.recetas = data as Receta[];
     })
+
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('myModal')
+    )
+  }
+
+  openFormModal() {
+    this.formModal.show();
+  }
+
+  saveSomeThing() {
+    this.formModal.hide();
   }
 
 }
