@@ -14,9 +14,12 @@ export class InicioSesionComponent implements OnInit {
 
   ngOnInit(): void {
     let form = {
-      email: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/),
+        Validators.required
+      ])],
       password: ['', Validators.compose([
-        Validators.pattern(/^.{5,}$/),
+        Validators.pattern(/^.{6,}$/),
         Validators.required
       ])],
     }

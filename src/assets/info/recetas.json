@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "tipo": "Postre",
+        "nombre": "Jalea"
+    },
+    {
+        "id": 2,
+        "tipo": "Plato de fondo",
+        "nombre": "Lentejas con arroz",
+        "insumos": [4,2,3]
+    },
+    {
+        "id": 3,
+        "tipo": "Ensalada",
+        "nombre": "Lechuga con zanahoria",
+        "insumos": [4,6]
+    },
+    {
+        "id": 4,
+        "tipo": "Ensalada",
+        "nombre": "Betarraga con cebolla",
+        "insumos": [7,8]
+    },
+    {
+        "id": 5,
+        "tipo": "Plato de fondo",
+        "nombre": "Fideos con salsa",
+        "insumos": [4,8,9,10]
+    }
+]

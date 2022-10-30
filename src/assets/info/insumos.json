@@ -1,0 +1,53 @@
+[ 
+    {
+        "id": 1,
+        "nombre": "Zapallo",
+        "gramos": 20
+    },
+    {
+        "id": 2,
+        "nombre": "Acelga",
+        "gramos": 15
+    },
+    {
+        "id": 3,
+        "nombre": "Repollo",
+        "gramos": 60
+    },
+    {
+        "id": 4,
+        "nombre": "Zanahoria",
+        "gramos": 100
+    },
+    {
+        "id": 5,
+        "nombre": "Tomate",
+        "gramos": 70
+    },
+    {
+        "id": 6,
+        "nombre": "Lechuga",
+        "gramos": 50
+    },
+    {
+        "id": 7,
+        "nombre": "Betarraga",
+        "gramos": 30
+    },
+    {
+        "id": 8,
+        "nombre": "Cebolla",
+        "gramos": 40
+    },
+    {
+        "id": 9,
+        "nombre": "Fideos",
+        "gramos": 300
+    }
+    ,
+    {
+        "id": 10,
+        "nombre": "Salsa de tomate",
+        "gramos": 300
+    }
+]
