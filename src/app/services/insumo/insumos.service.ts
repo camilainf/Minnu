@@ -4,16 +4,17 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { Constant } from "../../../environments/constants/constants";
+import { InsumoMapper } from "./insumo.mapper";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class InsumosService{
-    private insumos_endpoint : string = '/insumos';
+    private insumos_endpoint : string = '/insumos/';
     
 
-    constructor(private httpClient:HttpClient){
+    constructor(private httpClient:HttpClient, private insumomapper: InsumoMapper){
     }
 
     cargarInsumos(): Observable<any> {
@@ -22,12 +23,14 @@ export class InsumosService{
     }
 
     cargarInsumoById(): Observable<any> {
-        const url = Constant.API_URL + this.insumos_endpoint + '/' + '1';
+        const url = Constant.API_URL + this.insumos_endpoint + '1';
         return this.httpClient.get(url);
     }
 
-    /* agregarInsumo(insumo: Insumo):Observable<any> {
-        const body
-    } */
+    crearInsumo(insumo: Insumo): Observable<any> {
+        const body = this.insumomapper.mapInsumoToDto(insumo);
+        const url = Constant.API_URL + this.insumos_endpoint ;
+        return this.httpClient.post(url, body, {observe: 'response'});
+    }
     
 }
