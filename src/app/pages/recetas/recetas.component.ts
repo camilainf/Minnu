@@ -15,6 +15,7 @@ declare var window : any;
 
 export class RecetasComponent implements OnInit {
   formModal: any;
+  modalRegistroReceta: any;
 
   recetas: Receta[] = [];
   receta: Receta = {} as Receta;
@@ -58,16 +59,37 @@ export class RecetasComponent implements OnInit {
       document.getElementById('myModal')
     )
 
+    this.modalRegistroReceta = new window.bootstrap.Modal(
+      document.getElementById('registroRecetaModal')
+    )
+
   }
 
   
-
+  // MODAL PARA VER DETALLES DE LA RECETA
   openFormModal() {
     this.formModal.show();
   }
 
   saveSomeThing() {
     this.formModal.hide();
+  }
+
+  closeModal() {
+    this.formModal.hide();
+  }
+
+  // MODAL PARA REGISTRAR UNA RECETA
+  openRegistroModal() {
+    this.modalRegistroReceta.show();
+  }
+
+  cancelarRegistro() {
+    this.modalRegistroReceta.hide();
+  }
+
+  guardarCambiosRegistro() {
+    this.modalRegistroReceta.hide();
   }
 
 }
