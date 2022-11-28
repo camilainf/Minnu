@@ -25,7 +25,7 @@
                                     </svg>
                                 </button>
                                 <!-- boton agregar -->
-                                <button class="btn btn-outline-black border border-dark me-2" type="submit">
+                                <button class="btn btn-outline-black border border-dark me-2" type="button" (click)="openRegistroModal()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
                                         class="bi bi-plus-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -40,7 +40,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{minuta.nombreMinuta}}</h5>
                                     <!-- Modal -->
-                                    <button type="button" (click)="openFormModal()" class="btn btn-dark">
+                                    <button type="button" (click)="openFormModalMinuta()" class="btn btn-dark">
                                         Ver detalles
                                     </button>
                                     <!-- <a href="" class="btn btn-secondary d-grid ">Ver detalles</a> -->
@@ -62,16 +62,23 @@
                         <!-- INPUT Y LUPA -->
                         <div class="col-12" align="center">
                             <form class="d-flex" role="search">
-                                <!-- INPUT -->
-                                <input class="form-control me-2" type="search" placeholder="Ingrese el nombre"
+                                <!-- input buscador -->
+                                <input class="form-control me-2 border border-dark" type="search" placeholder=""
                                     aria-label="Search">
-                                <!-- LUPA -->
-                                <button class="btn btn-outline-black border" type="submit">
+                                <!-- boton buscar -->
+                                <button class="btn btn-outline-black border border-dark me-2" type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-search" viewBox="0 0 16 16">
                                         <path
                                             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                     </svg>
+                                </button>
+                                <!-- boton agregar -->
+                                <button class="btn btn-outline-black border border-dark me-2" type="button" (click)="openFormModalInsumo()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                      </svg>
                                 </button>
                             </form>
                         </div>
@@ -96,12 +103,12 @@
     </div>
 </body>
 
+<!-- MINUTAS -->
 
-
-<!--form modal-->
+<!-- VER DETALLES MINUTA -->
 <div
   class="modal fade"
-  id="myModal"
+  id="minutaModal"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -109,7 +116,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Bootstrp Modal</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ver Detalles</h5>
         <button
           type="button"
           class="btn-close"
@@ -118,16 +125,111 @@
         ></button>
       </div>
       <div class="modal-body">
-        <h3>Aquí saldran los detalles de la minuta, con sus regimenes correspondientes</h3>
+        <h3>Acá saldrán los detalles de las minutas</h3>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
+          Cancelar
         </button>
         <button type="button" class="btn btn-primary" (click)="saveSomeThing()">
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGREGAR MINUTA -->
+<div
+  class="modal fade"
+  id="modalRegistroMinuta"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ingrese los datos</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="cancelarRegistro()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h3>Campos para ingresar datos aqui</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelarRegistro()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="guardarCambiosRegistro()">
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSUMOS -->
+
+<!-- AGREGAR INSUMO -->
+<div
+  class="modal fade"
+  id="insumoModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- FORMULARIO PARA REGISTRARSE -->
+        <form class="fw-semibold formularioLogin" [formGroup]="formRegistroInsumo" (ngSubmit)="signIn()">
+            <!-- NOMBRE -->
+            <div class="mb-4 form-group">
+                <label for="username" class="form-label">Nombre</label>
+                <span *ngIf="formRegistroInsumo.controls['nombreInsumo'].invalid && (formRegistroInsumo.controls['nombreInsumo'].dirty || formRegistroInsumo.controls['nombreInsumo'].touched)" class="alert">
+                    <small class="mensajeError" *ngIf="formRegistroInsumo.controls['nombreInsumo'].errors?.['required']">
+                      * Ingrese su nombre.
+                    </small>
+                    <small class="mensajeError" *ngIf="formRegistroInsumo.controls['username'].errors?.['pattern']">
+                      * Supero el maximo de 10 caracteres.
+                    </small>
+                </span>
+                <input type="nombreInsumo" class="form-control" formControlName="nombreInsumo" placeholder="Nombre insumo">
+            </div>
+            <div class="mb-4 form-group">
+                <label for="username" class="form-label">Gramos</label>
+                <span *ngIf="formRegistroInsumo.controls['gramos'].invalid && (formRegistroInsumo.controls['gramos'].dirty || formRegistroInsumo.controls['gramos'].touched)" class="alert">
+                    <small class="mensajeError" *ngIf="formRegistroInsumo.controls['gramos'].errors?.['gramos']">
+                      * Ingrese su nombre.
+                    </small>
+                    <small class="mensajeError" *ngIf="formRegistroInsumo.controls['gramos'].errors?.['pattern']">
+                      * Supero el maximo de 10 caracteres.
+                    </small>
+                </span>
+                <input type="gramos" class="form-control" formControlName="gramos" placeholder="Gramos">
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="guardarCambios()">
           Save changes
         </button>
       </div>
     </div>
   </div>
 </div>
+
