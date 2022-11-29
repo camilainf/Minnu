@@ -40,15 +40,12 @@ export class InicioComponent implements OnInit {
     })
 
     // CARGA DE INSUMO POR ID
-    this.insumosService.cargarInsumoById().subscribe((data)=>{
-      console.log(data);  
+    this.insumosService.cargarInsumoById(2).subscribe((data)=>{
       this.insumo = this.insumoMapper.mapDTOtoInsumo(data as InsumoDTO);
-
     })
  
     // CARGA DE INSUMOS
     this.insumosService.cargarInsumos().subscribe((data)=>{
-      console.log(data);
       for(let i in data) {
         this.insumos.push(this.insumoMapper.mapDTOtoInsumo(data[i] as InsumoDTO));
       }
