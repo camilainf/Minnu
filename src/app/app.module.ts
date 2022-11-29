@@ -15,6 +15,12 @@ import { MenusComponent } from './pages/menus/menus.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
 import { RegimenesComponent } from './pages/regimenes/regimenes.component';
 import {HttpClientModule} from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatChipsModule} from "@angular/material/chips";
+import {MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatListModule} from '@angular/material/list';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -35,7 +41,13 @@ import {HttpClientModule} from "@angular/common/http";
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatChipsModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

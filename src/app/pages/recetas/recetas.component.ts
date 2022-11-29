@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { RecetasService } from '../../services/receta/recetas.service';
 import { Receta, RecetaDTO } from 'src/app/services/receta/receta.type';
 import { RecetaMapper } from 'src/app/services/receta/receta.mapper';
 import { TipoReceta, TipoRecetaDTO } from 'src/app/services/tipo-receta/tipo-receta.type';
 import { TipoRecetaService } from 'src/app/services/tipo-receta/tipo-receta.service';
 import { TipoRecetaMapper } from 'src/app/services/tipo-receta/tipo-receta.mapper';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
 import { Router } from "@angular/router";
 import { InsumosService } from 'src/app/services/insumo/insumos.service';
 import { Insumo, InsumoDTO } from 'src/app/services/insumo/insumo.type';
 import { InsumoMapper } from 'src/app/services/insumo/insumo.mapper';
-  
+import {map, Observable, startWith} from 'rxjs';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+
 declare var window : any; 
+
 
 @Component({
   selector: 'app-recetas',
@@ -24,6 +29,7 @@ export class RecetasComponent implements OnInit {
   modalRegistroReceta: any;
 
   formRegistroReceta: FormGroup = {} as FormGroup;
+  formTipoReceta: FormControl = {} as FormControl;
 
   recetas: Receta[] = [];
   receta: Receta = {} as Receta;
@@ -31,8 +37,29 @@ export class RecetasComponent implements OnInit {
   tiposRecetas: TipoReceta[] = [];
   tipoReceta: TipoReceta = {} as TipoReceta;
 
-  constructor(private recetasService: RecetasService, private recetasMapper: RecetaMapper, private tipoRecetaMapper: TipoRecetaMapper, private tiposRecetasService: TipoRecetaService, private formBuilder: FormBuilder, private router: Router, private insumosService: InsumosService, private insumosMapper: InsumoMapper) {
-    
+  totalInsumos: Insumo[] = [];
+  insumosName: string[] = [];
+  insumosEnMuestra: string[] = [];
+  insumosCtrl = new FormControl('');
+  filteredInsumos: Observable<string[]>;
+
+  @ViewChild('insumosInput') insumosInput: ElementRef<HTMLInputElement> | undefined;
+
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  constructor(
+    private recetasService: RecetasService,
+    private recetasMapper: RecetaMapper,
+    private tipoRecetaMapper: TipoRecetaMapper,
+    private tiposRecetasService: TipoRecetaService, 
+    private formBuilder: FormBuilder,
+    private router: Router, 
+    private insumosService: InsumosService,
+    private insumosMapper: InsumoMapper) {
+      this.filteredInsumos = this.insumosCtrl.valueChanges.pipe(
+        startWith(null),
+        map((insumo: string | null) => (insumo ? this._filter(insumo) : this.insumosName.slice())),
+      )
   }
 
   ngOnInit(): void {
@@ -41,16 +68,25 @@ export class RecetasComponent implements OnInit {
 
     this.formRegistroReceta = this.formBuilder.group({
       nombreReceta: ['', Validators.compose([Validators.pattern(formatoName),Validators.required])],
+      formTipoReceta: ['', Validators.compose([Validators.pattern(formatoName),Validators.required])]
     })
 
     // CARGAR TIPOSRECETAS
     this.tiposRecetasService.cargarTiposRecetas().subscribe((data)=>{
-
       for(let i in data) {
         this.tiposRecetas.push(this.tipoRecetaMapper.mapDTOtoTipoReceta(data[i] as TipoRecetaDTO));
       }
+    })
 
-      console.log(this.tiposRecetas);
+    // CARGAR INSUMOS
+    this.insumosService.cargarInsumos().subscribe((value)=>{
+      for (let ins of value) {
+        this.totalInsumos.push(this.insumosMapper.mapDTOtoInsumo(ins as InsumoDTO));
+      }
+      for(let i in this.totalInsumos){
+        this.insumosName.push(this.totalInsumos[i].nombre);
+      }
+      console.log(this.insumosName,this.totalInsumos);
     })
 
     // CARGA DE RECETAS MAS SU TIPO Y SUS INSUMOS
@@ -89,6 +125,44 @@ export class RecetasComponent implements OnInit {
 
   }
 
+  // FORM RECETAS PARA AGREGAR INSUMOS
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our tag
+    if (value && this.insumosName.includes(value)) {
+      this.insumosEnMuestra.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.insumosCtrl.setValue(null);
+  }
+
+  remove(tag: string): void {
+    const index = this.insumosEnMuestra.indexOf(tag);
+
+    if (index >= 0) {
+      this.insumosEnMuestra.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    if (!this.insumosEnMuestra.includes(event.option.viewValue)) {
+      this.insumosEnMuestra.push(event.option.viewValue);
+    }
+    this.insumosInput!.nativeElement.value = '';
+    this.insumosCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.insumosName.filter(insumos => insumos.toLowerCase().includes(filterValue));
+  }
+
   
   // MODAL PARA VER DETALLES DE LA RECETA
   openFormModal() {
@@ -114,6 +188,10 @@ export class RecetasComponent implements OnInit {
 
   guardarCambiosRegistro() {
     this.modalRegistroReceta.hide();
+  }
+
+  probar(){
+    console.log(this.formRegistroReceta.get('formTipoReceta')!.value)
   }
 
 }

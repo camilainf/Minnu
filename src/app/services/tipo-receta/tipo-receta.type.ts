@@ -1,5 +1,3 @@
-
-
 export interface TipoReceta {
     id: number;
     nombreTipo: string;

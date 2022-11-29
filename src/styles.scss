@@ -6,6 +6,8 @@
 $color-body:#E0DFE4;
 $color-container: #F2F1F5;
 
+.cdk-overlay-container, .cdk-overlay-pane { z-index: 99999 !important; }
+
 html,body{
     height: 100% !important;
 }
@@ -22,3 +24,6 @@ body {
     background-color: $color-container;
 }
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
