@@ -2,9 +2,10 @@ import { Insumo } from "../insumo/insumo.type";
 
 export interface Receta {
     id: number;
-    idTipoReceta: number; // Ensalada, Plato de fondo
+    idTipoReceta: number;
+    tipoReceta?: string;
     nombreTipo?: string;
-    nombre: string; // Lentejas con arroz, fruta natura, Bife al jugo con pure deshid
+    nombre: string;
     insumos?: Insumo[];
 }
 

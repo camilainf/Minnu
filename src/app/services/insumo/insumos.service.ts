@@ -11,6 +11,7 @@ import { InsumoMapper } from "./insumo.mapper";
 
 export class InsumosService{
     private insumos_endpoint : string = '/insumos/';
+    private insumos_endpoint2 : string = '/insumoss/';
     
 
     constructor(private httpClient:HttpClient, private insumomapper: InsumoMapper){
@@ -21,9 +22,14 @@ export class InsumosService{
         return this.httpClient.get(url);
     }
 
-    cargarInsumoById(): Observable<any> {
-        const url = Constant.API_URL + this.insumos_endpoint + '1';
-        return this.httpClient.get(url);
+    cargarInsumoById(idReceta: number): Observable<any> {
+        const url = Constant.API_URL + this.insumos_endpoint + idReceta ;
+        return this.httpClient.get(url, {observe: 'response'});
+    }
+
+    cargarInsumoByRecipeId(idReceta: number): Observable<any> {
+        const url = Constant.API_URL + this.insumos_endpoint2 + idReceta ;
+        return this.httpClient.get(url, {observe: 'response'});
     }
 
     crearInsumo(insumo: NewInsumo): Observable<any> {
