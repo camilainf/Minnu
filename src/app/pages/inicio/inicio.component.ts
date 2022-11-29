@@ -1,4 +1,4 @@
-import { Insumo, InsumoDTO } from 'src/app/services/insumo/insumo.type';
+import { Insumo, InsumoDTO, NewInsumo } from 'src/app/services/insumo/insumo.type';
 import { AbstractType, Component, OnInit } from '@angular/core';
 import { InsumosService } from '../../services/insumo/insumos.service';
 import { MinutasService } from '../../services/minuta/minutas.service';
@@ -71,27 +71,37 @@ export class InicioComponent implements OnInit {
     )
   }
 
-  signIn() {
-    console.log(this.formRegistroInsumo.status);
-    if (this.formRegistroInsumo.status === 'VALID') {
-      this.router.navigate(['/inicio'])
-    } 
-  }
-
-  openFormModalMinuta() {
-    this.formModalMinuta.show();
-  }
-
+  // MODAL PARA REGISTRAR UN INSUMO
   openFormModalInsumo() {
     this.formModalInsumo.show();
   }
 
-  saveSomeThing() {
-    this.formModalMinuta.hide();
+  guardarCambios() {
+    if(this.formRegistroInsumo.status == 'VALID') {
+      const newInsumo : NewInsumo = {
+        nombre : this.formRegistroInsumo.get('nombreInsumo')?.value,
+        gramos : this.formRegistroInsumo.get('gramos')?.value,
+      }
+
+      this.insumosService.crearInsumo(newInsumo).subscribe((res)=> {
+        console.log(res);
+      })
+    }
+    this.formModalInsumo.hide();
   }
 
-  guardarCambios() {
+  cancelarRegistroInsumo() {
     this.formModalInsumo.hide();
+  }
+
+  
+  // VER DETALLES MINUTAS
+  openFormModalMinuta() {
+    this.formModalMinuta.show();
+  }
+
+  saveSomeThing() {
+    this.formModalMinuta.hide();
   }
 
   // MODAL PARA REGISTRAR UNA MINUTA

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Insumo, InsumoDTO } from "./insumo.type";
+import { Insumo, InsumoDTO, NewInsumo} from "./insumo.type";
 
 @Injectable({
     providedIn: 'root'
@@ -17,10 +17,9 @@ export class InsumoMapper {
         return insumo;
     }
 
-    mapInsumoToDto(insumo: Insumo): InsumoDTO {
+    mapInsumoToDto(insumo: NewInsumo): InsumoDTO {
         const insumoDTO = {} as InsumoDTO;
 
-        insumoDTO.idinsumo = insumo.id;
         insumoDTO.insumo = insumo.nombre;
         insumoDTO.gramos = insumo.gramos;
 

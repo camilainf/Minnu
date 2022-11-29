@@ -5,6 +5,8 @@ import { RecetaMapper } from 'src/app/services/receta/receta.mapper';
 import { TipoReceta, TipoRecetaDTO } from 'src/app/services/tipo-receta/tipo-receta.type';
 import { TipoRecetaService } from 'src/app/services/tipo-receta/tipo-receta.service';
 import { TipoRecetaMapper } from 'src/app/services/tipo-receta/tipo-receta.mapper';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Router } from "@angular/router";
 declare var window : any; 
 
 @Component({
@@ -17,17 +19,25 @@ export class RecetasComponent implements OnInit {
   formModal: any;
   modalRegistroReceta: any;
 
+  formRegistroReceta: FormGroup = {} as FormGroup;
+
   recetas: Receta[] = [];
   receta: Receta = {} as Receta;
 
   tiposRecetas: TipoReceta[] = [];
   tipoReceta: TipoReceta = {} as TipoReceta;
 
-  constructor(private recetasService: RecetasService, private recetasMapper: RecetaMapper, private tipoRecetaMapper: TipoRecetaMapper, private tiposRecetasService: TipoRecetaService) {
+  constructor(private recetasService: RecetasService, private recetasMapper: RecetaMapper, private tipoRecetaMapper: TipoRecetaMapper, private tiposRecetasService: TipoRecetaService, private formBuilder: FormBuilder, private router: Router) {
     
   }
 
   ngOnInit(): void {
+
+    let formatoName = /^.{1,10}$/
+
+    this.formRegistroReceta = this.formBuilder.group({
+      nombreReceta: ['', Validators.compose([Validators.pattern(formatoName),Validators.required])],
+    })
 
     // CARGA DE RECETAS
     this.recetasService.cargarRecetas().subscribe((data)=>{

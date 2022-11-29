@@ -13,8 +13,6 @@ export class UserService {
 
     private _user: UserIn | undefined;
 
-    
-
     constructor(private httpClient : HttpClient, private userMapper: UserMapper) {}
 
     userRegister (user: UserRegister):Observable<any> {
@@ -29,6 +27,7 @@ export class UserService {
         const body = this.userMapper.mapLoginToBody(email, pass);
         const url = Constant.API_URL + '/login';
         const request = this.httpClient.post(url, body, {observe: 'response'});
+        
         return request;
     }
 

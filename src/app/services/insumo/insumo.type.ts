@@ -9,3 +9,8 @@ export interface InsumoDTO {
     gramos: number;
     insumo: string;
 }
+
+export interface NewInsumo{
+    nombre: string;
+    gramos: number;
+}

@@ -108,7 +108,30 @@
         ></button>
       </div>
       <div class="modal-body">
-        <h3>Campos para ingresar datos aqui</h3>
+        <!-- FORMULARIO PARA REGISTRAR INSUMO -->
+        <form class="fw-semibold formularioLogin" [formGroup]="formRegistroReceta">
+          <!-- NOMBRE -->
+          <div class="mb-4 form-group">
+              <label for="username" class="form-label">Nombre</label>
+              <span *ngIf="formRegistroReceta.controls['nombreReceta'].invalid && (formRegistroReceta.controls['nombreReceta'].dirty || formRegistroReceta.controls['nombreReceta'].touched)" class="alert">
+                  <small class="mensajeError" *ngIf="formRegistroReceta.controls['nombreReceta'].errors?.['required']">
+                    * Ingrese su nombre.
+                  </small>
+                  <small class="mensajeError" *ngIf="formRegistroReceta.controls['username'].errors?.['pattern']">
+                    * Supero el maximo de 10 caracteres.
+                  </small>
+              </span>
+              <input type="nombreReceta" class="form-control" formControlName="nombreReceta" placeholder="Nombre receta">
+          </div>
+        </form>
+
+        <label for="username" class="form-label">Regimen</label>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Ninguno</option>
+          <option value="1">Hiposodico</option>
+          <option value="2">Vegetariano</option>
+          <option value="3">Liquido</option>
+        </select>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelarRegistro()">

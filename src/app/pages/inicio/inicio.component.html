@@ -192,11 +192,12 @@
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          (click)="cancelarRegistroInsumo()"
         ></button>
       </div>
       <div class="modal-body">
-        <!-- FORMULARIO PARA REGISTRARSE -->
-        <form class="fw-semibold formularioLogin" [formGroup]="formRegistroInsumo" (ngSubmit)="signIn()">
+        <!-- FORMULARIO PARA REGISTRAR INSUMO -->
+        <form class="fw-semibold formularioLogin" [formGroup]="formRegistroInsumo">
             <!-- NOMBRE -->
             <div class="mb-4 form-group">
                 <label for="username" class="form-label">Nombre</label>
@@ -204,12 +205,14 @@
                     <small class="mensajeError" *ngIf="formRegistroInsumo.controls['nombreInsumo'].errors?.['required']">
                       * Ingrese su nombre.
                     </small>
-                    <small class="mensajeError" *ngIf="formRegistroInsumo.controls['username'].errors?.['pattern']">
+                    <small class="mensajeError" *ngIf="formRegistroInsumo.controls['nombreInsumo'].errors?.['pattern']">
                       * Supero el maximo de 10 caracteres.
                     </small>
                 </span>
                 <input type="nombreInsumo" class="form-control" formControlName="nombreInsumo" placeholder="Nombre insumo">
             </div>
+
+            <!-- GRAMOS -->
             <div class="mb-4 form-group">
                 <label for="username" class="form-label">Gramos</label>
                 <span *ngIf="formRegistroInsumo.controls['gramos'].invalid && (formRegistroInsumo.controls['gramos'].dirty || formRegistroInsumo.controls['gramos'].touched)" class="alert">
@@ -223,9 +226,10 @@
                 <input type="gramos" class="form-control" formControlName="gramos" placeholder="Gramos">
             </div>
         </form>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="guardarCambios()">
+        <button type="button" class="btn btn-primary" (click)="guardarCambios()" [disabled]="!formRegistroInsumo.valid">
           Save changes
         </button>
       </div>

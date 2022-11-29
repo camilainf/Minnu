@@ -1,50 +1,36 @@
 [
     {
         "id": 1,
-        "tipo": "almuerzo",
-        "regimen": "comun",
+        "tipo": "Ensalada",
+        "regimen": "Comun",
         "raciones": 15,
         "recetas": [3,2,1]
     },
     {
         "id": 2,
-        "tipo": "cena",
-        "regimen": "vegetariano",
+        "tipo": "Plato de Fondo",
+        "regimen": "Vegetariano",
         "raciones": 60,
         "recetas": [4,3,2]
     },
     {
         "id": 3,
-        "tipo": "cena",
-        "regimen": "hiposodico",
+        "tipo": "Plato de Fondo",
+        "regimen": "Hiposodico",
         "raciones": 20,
         "recetas": [3,5,1]
     },
     {
         "id": 4,
-        "tipo": "cena",
-        "regimen": "liquido",
+        "tipo": "Menu",
+        "regimen": "Liquido",
         "raciones": 45,
         "recetas": [1,2,3]
     },
     {
         "id": 5,
-        "tipo": "almuerzo",
-        "regimen": "hiposodico",
-        "raciones": 15,
-        "recetas": [3,2,1]
-    },
-    {
-        "id": 6,
-        "tipo": "almuerzo",
-        "regimen": "liquido",
-        "raciones": 15,
-        "recetas": [3,2,1]
-    },
-    {
-        "id": 7,
-        "tipo": "cena",
-        "regimen": "comun",
+        "tipo": "Entrada",
+        "regimen": "Sin gluten",
         "raciones": 15,
         "recetas": [3,2,1]
     }

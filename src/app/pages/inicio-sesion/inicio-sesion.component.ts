@@ -29,7 +29,7 @@ export class InicioSesionComponent implements OnInit {
     this.formularioLoginForm = this.formBuilder.group(form); 
   }
 
-  iniciarSesion() {
+  /* iniciarSesion() {
     console.log(this.formularioLoginForm.status);
     if (this.formularioLoginForm.status === 'VALID') {
       console.log('Inicio de sesion exitoso');
@@ -37,21 +37,21 @@ export class InicioSesionComponent implements OnInit {
     } else {
       console.log('Faltan datos por ingresar');
     }
-  }
+  } */
 
   login() {
     console.log(this.formularioLoginForm.status);
+
     if (this.formularioLoginForm.status === 'VALID') {
       const email = this.formularioLoginForm.get('email')!.value;
       const pass = this.formularioLoginForm.get('password')!.value;
 
-
-      //console.log(this.formularioLoginForm.get('email')!.value, this.formularioLoginForm.get('password')!.value);
       this.userService.login(email, pass).subscribe((res)=>{
         console.log('res: ',res.body);
         if(res.status == '200') {
           this.userService.user = this.userMapper.mapDTOtoUser(res.body.user as UserInDTO)
           console.log(this.userService.getUser());
+          localStorage.setItem('token',res.body.token);
           this.router.navigate(['/inicio'])
         } else {
           console.log('ERROR EN EL LOGIN');
