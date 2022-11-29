@@ -48,8 +48,7 @@ export class InicioComponent implements OnInit {
     this.insumosService.cargarInsumos().subscribe((data)=>{
       for(let i in data) {
         this.insumos.push(this.insumoMapper.mapDTOtoInsumo(data[i] as InsumoDTO));
-      }
-      console.log(this.insumos);      
+      }  
     })
 
 
