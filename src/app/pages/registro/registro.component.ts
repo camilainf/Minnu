@@ -14,16 +14,18 @@ export class RegistroComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-    let formato = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
-
+    let formatoEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+    let formatoUsername = /^.{1,10}$/
     this.formRegistro = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.email, Validators.required,Validators.pattern(formato)])],
+      username: ['', Validators.compose([Validators.pattern(formatoUsername),Validators.required])],
+      email: ['', Validators.compose([Validators.email, Validators.required,Validators.pattern(formatoEmail)])],
       passwords: this.formBuilder.group({
         password: ['', Validators.compose([Validators.pattern(/^.{6,}$/), Validators.required])],
         copyPassword: ['', Validators.compose([Validators.pattern(/^.{6,}$/), Validators.required])]
       },
         {validators: this.checkPass}
-      )
+      ),
+      cb: [false, Validators.requiredTrue]
     })
 
   }

@@ -14,6 +14,20 @@
                 <h2 class="fe-bold text-center mb-4 pt-3 fw-bold">Registrate</h2>
                 <!-- FORMULARIO PARA REGISTRARSE -->
                 <form class="fw-semibold formularioLogin" [formGroup]="formRegistro" (ngSubmit)="signIn()">
+                    <!-- NOMBRE -->
+                    <div class="mb-4 form-group">
+                        <label for="username" class="form-label">Nombre</label>
+                        <span *ngIf="formRegistro.controls['username'].invalid && (formRegistro.controls['username'].dirty || formRegistro.controls['username'].touched)" class="alert">
+                            <small class="mensajeError" *ngIf="formRegistro.controls['username'].errors?.['required']">
+                              * Ingrese su nombre.
+                            </small>
+                            <small class="mensajeError" *ngIf="formRegistro.controls['username'].errors?.['pattern']">
+                              * Supero el maximo de 10 caracteres.
+                            </small>
+                        </span>
+                        <input type="username" class="form-control" formControlName="username" placeholder="Nombre">
+                    </div>
+
                     <!-- CORREO ELECTRONICO -->
                     <div class="mb-4 form-group">
                         <label for="email" class="form-label">Correo electronico</label>
@@ -25,7 +39,7 @@
                               * Escriba un correo en formato valido (ejemplo@gmail.com).
                             </small>
                         </span>
-                        <input type="email" class="form-control" formControlName="email" placeholder="Ejemplo@gmail.com">
+                        <input type="email" class="form-control" formControlName="email" placeholder="ejemplo@gmail.com">
                     </div>
 
                     <!-- CONTRASEÑA -->
@@ -49,13 +63,18 @@
                                 * Contraseña no coincide
                             </small>
                         </span>
-                        <input type="password" class="form-control" formControlName="copyPassword" placeholder="contraseña" id="copyPassword">
+                        <input type="password" class="form-control" formControlName="copyPassword" placeholder="Contraseña" id="copyPassword">
                     </div>
 
                     <!-- CHECK BOX -->
                     <div class="pt-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label mb-4" for="exampleCheck1">He leído y acepto los términos y condiciones y la política de seguridad y privacidad</label>
+                        <input type="checkbox" class="form-check-input" formControlName="cb">
+                        <label class="form-check-label mb-4" for="exampleCheck1"> Acepto los terminos y condiciones </label>
+                        <span *ngIf="formRegistro.hasError('required', 'cb')">
+                            <small class="mensajeError" *ngIf="formRegistro.controls['username'].errors?.['required']">
+                              * Requerido.
+                            </small>
+                        </span>
                     </div>
                     <div class="d-grid pb-4">
                         <button class="w-100 btn btn-lg btn-login-color text-white" type="submit"  [disabled]="!formRegistro.valid">Crear cuenta</button>

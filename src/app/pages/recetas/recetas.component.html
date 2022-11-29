@@ -23,7 +23,7 @@
                                     </svg>
                                 </button>
                                 <!-- boton agregar -->
-                                <button class="btn btn-outline-black border border-dark me-2" type="submit">
+                                <button class="btn btn-outline-black border border-dark me-2" type="button" (click)="openRegistroModal()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
                                         class="bi bi-plus-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -37,7 +37,8 @@
                             <div class="card p-3 mb-3 ph-100 mt-4">
                                 <div class="card-body">
                                     <h5 class="card-title">{{receta.nombre}}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{receta.tipo}}</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted" >{{receta.nombreTipo}}</h6>
+
                                     <button type="button" (click)="openFormModal()" class="btn btn-dark">
                                         Ver detalles
                                     </button>
@@ -51,7 +52,7 @@
     </div>
 </body>
 
-<!--form modal-->
+<!-- MODAL VER DETALLES -->
 <div
   class="modal fade"
   id="myModal"
@@ -62,23 +63,82 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Bootstrp Modal</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detalles de la receta</h5>
         <button
           type="button"
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          (click)="closeModal()"
         ></button>
       </div>
       <div class="modal-body">
         <h3>Aquí saldran los detalles de la receta, con sus insumos</h3>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">
+          Cancelar
         </button>
         <button type="button" class="btn btn-primary" (click)="saveSomeThing()">
-          Save changes
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL AGREGAR RECETA -->
+<div
+  class="modal fade"
+  id="registroRecetaModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ingrese los datos</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="cancelarRegistro()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- FORMULARIO PARA REGISTRAR INSUMO -->
+        <form class="fw-semibold formularioLogin" [formGroup]="formRegistroReceta">
+          <!-- NOMBRE -->
+          <div class="mb-4 form-group">
+              <label for="username" class="form-label">Nombre</label>
+              <span *ngIf="formRegistroReceta.controls['nombreReceta'].invalid && (formRegistroReceta.controls['nombreReceta'].dirty || formRegistroReceta.controls['nombreReceta'].touched)" class="alert">
+                  <small class="mensajeError" *ngIf="formRegistroReceta.controls['nombreReceta'].errors?.['required']">
+                    * Ingrese su nombre.
+                  </small>
+                  <small class="mensajeError" *ngIf="formRegistroReceta.controls['username'].errors?.['pattern']">
+                    * Supero el maximo de 10 caracteres.
+                  </small>
+              </span>
+              <input type="nombreReceta" class="form-control" formControlName="nombreReceta" placeholder="Nombre receta">
+          </div>
+        </form>
+
+        <label for="username" class="form-label">Regimen</label>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Ninguno</option>
+          <option value="1">Hiposodico</option>
+          <option value="2">Vegetariano</option>
+          <option value="3">Liquido</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelarRegistro()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="guardarCambiosRegistro()">
+          Guardar Cambios
         </button>
       </div>
     </div>

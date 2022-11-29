@@ -14,23 +14,26 @@
       <!-- LISTA DE ICONOS DE LA DERECHA -->
       <div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="isCollapsed">
         <ul class="navbar-nav ms-auto">
-          <!-- REGIMENES --> 
-          <li class="nav-item mx-1 rounded-4">
-            <a class="nav-link" routerLink="/regimenes">
-              <h4>Regimenes</h4>
-            </a>
-          </li>
+
           <!-- RECETAS -->
           <li class="nav-item mx-1 rounded-4">
             <a class="nav-link" routerLink="/recetas">
               <h4>Recetas</h4>
             </a>
           </li>
+
+          <!-- MENUS -->  
+          <li class="nav-item mx-1 rounded-4">
+            <a class="nav-link" routerLink="/menus">
+              <h4>Menus</h4>
+            </a>
+          </li>
+
           <!-- LOGOUT -->
           <li class="nav-item mx-1 rounded-4">
-            <a class="nav-link" routerLink="/iniciosesion">
+            <button class="nav-link" routerLink="/iniciosesion" (click)="cerrarSesion()">
               <img src="../../assets/images/iconos/logout.png" width="30" height="30" class="d-inline-block align-top" title="Cerrar sesion">
-            </a>
+            </button>
           </li>
         </ul>
       </div>
