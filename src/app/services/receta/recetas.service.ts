@@ -20,8 +20,8 @@ export class RecetasService{
         return this.httpClient.get(url);
     }
 
-    cargarRecetasByID(): Observable<any> {
+    /* cargarRecetasByID(): Observable<any> {
         const url = Constant.API_URL + this.recetas_endpoint + '1';
         return this.httpClient.get(url);
-    }
+    } */
 }

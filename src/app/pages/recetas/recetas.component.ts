@@ -7,6 +7,10 @@ import { TipoRecetaService } from 'src/app/services/tipo-receta/tipo-receta.serv
 import { TipoRecetaMapper } from 'src/app/services/tipo-receta/tipo-receta.mapper';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
+import { InsumosService } from 'src/app/services/insumo/insumos.service';
+import { Insumo, InsumoDTO } from 'src/app/services/insumo/insumo.type';
+import { InsumoMapper } from 'src/app/services/insumo/insumo.mapper';
+  
 declare var window : any; 
 
 @Component({
@@ -27,7 +31,7 @@ export class RecetasComponent implements OnInit {
   tiposRecetas: TipoReceta[] = [];
   tipoReceta: TipoReceta = {} as TipoReceta;
 
-  constructor(private recetasService: RecetasService, private recetasMapper: RecetaMapper, private tipoRecetaMapper: TipoRecetaMapper, private tiposRecetasService: TipoRecetaService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private recetasService: RecetasService, private recetasMapper: RecetaMapper, private tipoRecetaMapper: TipoRecetaMapper, private tiposRecetasService: TipoRecetaService, private formBuilder: FormBuilder, private router: Router, private insumosService: InsumosService, private insumosMapper: InsumoMapper) {
     
   }
 
@@ -39,29 +43,39 @@ export class RecetasComponent implements OnInit {
       nombreReceta: ['', Validators.compose([Validators.pattern(formatoName),Validators.required])],
     })
 
-    // CARGA DE RECETAS
-    this.recetasService.cargarRecetas().subscribe((data)=>{
-      console.log(data);
+    // CARGAR TIPOSRECETAS
+    this.tiposRecetasService.cargarTiposRecetas().subscribe((data)=>{
 
       for(let i in data) {
-        this.recetas.push(this.recetasMapper.mapDTOtoReceta(data[i] as RecetaDTO));
+        this.tiposRecetas.push(this.tipoRecetaMapper.mapDTOtoTipoReceta(data[i] as TipoRecetaDTO));
       }
 
-      this.tiposRecetasService.cargarTiposRecetas().subscribe((data)=>{
-  
-        for(let i in data) {
-          this.tiposRecetas.push(this.tipoRecetaMapper.mapDTOtoTipoReceta(data[i] as TipoRecetaDTO));
-        }
+      console.log(this.tiposRecetas);
+    })
 
-        for(let receta of this.recetas) {
-          receta.nombreTipo = this.tiposRecetas.find(x => x.id == receta.idTipoReceta)?.nombreTipo;
-        }
+    // CARGA DE RECETAS MAS SU TIPO Y SUS INSUMOS
+    this.recetasService.cargarRecetas().subscribe((data) =>{
 
+      for(let recip of data) {
+        let recipe = this.recetasMapper.mapDTOtoReceta(recip as RecetaDTO);
+        this.tiposRecetasService.getTipoRecetaByIdReceta(recipe.idTipoReceta).subscribe((data)=>{
+          recipe.tipoReceta = data.body[0];
+
+        })   
         
-
-      })
-
-      console.log(this.recetas);      
+        this.insumosService.cargarInsumoByRecipeId(recipe.id).subscribe((data)=>{
+          let insumos: Insumo[] = []
+          
+          if(data.body.res) {
+            for(let ins of data.body.res) {
+              insumos.push(this.insumosMapper.mapDTOtoInsumo(ins as InsumoDTO));
+            }
+          }
+          
+          recipe.insumos = insumos;
+          this.recetas.push(recipe);
+        }) 
+      }
     })
     
 

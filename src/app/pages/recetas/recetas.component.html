@@ -73,7 +73,14 @@
         ></button>
       </div>
       <div class="modal-body">
-        <h3>Aquí saldran los detalles de la receta, con sus insumos</h3>
+        <h2>Pure con Huevo</h2>
+        <h3>Ingredientes:</h3>
+        <ul>
+          <li>Pure</li>
+          <li>Huevo</li>
+          <li>Aceite</li>
+          <li>Sal</li>
+        </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">
@@ -108,7 +115,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <!-- FORMULARIO PARA REGISTRAR INSUMO -->
+        <!-- FORMULARIO PARA REGISTRAR RECETA -->
         <form class="fw-semibold formularioLogin" [formGroup]="formRegistroReceta">
           <!-- NOMBRE -->
           <div class="mb-4 form-group">
@@ -117,7 +124,7 @@
                   <small class="mensajeError" *ngIf="formRegistroReceta.controls['nombreReceta'].errors?.['required']">
                     * Ingrese su nombre.
                   </small>
-                  <small class="mensajeError" *ngIf="formRegistroReceta.controls['username'].errors?.['pattern']">
+                  <small class="mensajeError" *ngIf="formRegistroReceta.controls['nombreReceta'].errors?.['pattern']">
                     * Supero el maximo de 10 caracteres.
                   </small>
               </span>
@@ -125,12 +132,11 @@
           </div>
         </form>
 
-        <label for="username" class="form-label">Regimen</label>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Ninguno</option>
-          <option value="1">Hiposodico</option>
-          <option value="2">Vegetariano</option>
-          <option value="3">Liquido</option>
+        <!-- TIPO RECETA -->
+        <label for="username" class="form-label">Tipo Receta</label>
+        <select class="form-select" aria-label="Default select example" >
+          <option selected >Seleccione un tipo de receta</option>
+          <option *ngFor="let tipo of tiposRecetas; let i = index" [value]="i">{{tipo.nombreTipo}}</option>
         </select>
       </div>
       <div class="modal-footer">

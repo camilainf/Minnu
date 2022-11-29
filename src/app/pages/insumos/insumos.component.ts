@@ -14,7 +14,7 @@ export class InsumosComponent implements OnInit {
   constructor(private insumosService: InsumosService) {}
 
   ngOnInit(): void {
-    this.insumosService.cargarInsumoById().subscribe((data)=>{
+    this.insumosService.cargarInsumoById(2).subscribe((data)=>{
       console.log(data);
       this.insumo = data as Insumo;
     })

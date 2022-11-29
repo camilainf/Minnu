@@ -20,5 +20,9 @@ export class TipoRecetaService{
         const url = Constant.API_URL + this.tiposrecetas_endpoint;
         return this.httpClient.get(url);
     }
+
+    getTipoRecetaByIdReceta(idReceta:number) : Observable<any>{
+        return this.httpClient.get(Constant.API_URL + this.tiposrecetas_endpoint + '/' + idReceta, {observe : 'response'});
+    }
     
 }

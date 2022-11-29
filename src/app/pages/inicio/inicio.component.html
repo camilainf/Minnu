@@ -84,9 +84,22 @@
                         </div>
                     </div>
                     <hr>
+                    <div class="row" >
+                      <div class="col mx-2">
+                          <div class="row">
+                              <div class="col-9">
+                                  <h5>Nombre</h5>
+                              </div>
+                              <div class="col-3">
+                                  <h5>Gramos</h5>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                    <hr>
                     <!-- RESULTADOS -->
                     <div class="row">
-                        <div class="col mb-3">
+                        <div class="col mb-3 mx-2">
                             <div class="row" *ngFor="let insumo of insumos">
                                 <div class="col-9">
                                     <h4>{{insumo.nombre}}</h4>
@@ -125,7 +138,22 @@
         ></button>
       </div>
       <div class="modal-body">
-        <h3>Acá saldrán los detalles de las minutas</h3>
+        <div class="row">
+          <div class="col">
+            <h3>Menus:</h3>
+            <ul>
+              <li>Liquido</li>
+              <li>Hiposodico</li>
+              <li>Vegetariano</li>
+              <li>Comun</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Agendada para:</h3>
+            <li>Día 3 de quincenas</li>
+          </div>
+        </div>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
