@@ -9,9 +9,3 @@ export interface RegimenDTO {
     regimen: string;
 }
 
-export interface NewReceta {
-    nombre: string,
-    tipoReceta: string,
-    insumos: number[]
-}
-
