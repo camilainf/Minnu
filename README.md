@@ -12,8 +12,13 @@ Una vez completados los pasos anteriores, ejecutar ng serve -o.
 
 Para crear insumos, recetas o menus es necesario estar logueado.
 
-Para iniciar sesion utilice las siguientes credenciales:
+Para iniciar sesion puede registrar una cuenta nueva o  utilizar las siguientes credenciales que ya se encuentran registradas:
 - email: rosita@mail.cl
 - pass: rosita123
+
+## Desarrolladores:
+- Camila Escobedo
+
+
 
 
