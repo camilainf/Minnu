@@ -26,5 +26,15 @@ export class InsumoMapper {
         return insumoDTO;
     }
 
+    mapStringToInsumo(insumosStr: string[], totalInsumos: Insumo[]): number[] {
+        const insumos:number[] = [];
+
+        for (let i in insumosStr) {
+            insumos.push((totalInsumos.find(({nombre}) => nombre == insumosStr[i])!).id)
+        }
+
+        return insumos;
+    }
+
 }
 

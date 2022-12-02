@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { MenusComponent } from './pages/menus/menus.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
-import { RegimenesComponent } from './pages/regimenes/regimenes.component';
+
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatChipsModule} from "@angular/material/chips";
@@ -32,8 +32,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     InsumosComponent,
     RegistroComponent,
     MenusComponent,
-    RecetasComponent,
-    RegimenesComponent
+    RecetasComponent
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@
                                     </svg>
                                 </button>
                                 <!-- boton agregar -->
-                                <button class="btn btn-outline-black border border-dark me-2" type="button" (click)="openRegistroModal()">
+                                <button class="btn btn-outline-black border border-dark me-2" type="button" (click)="abrirModalRegistro()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-plus-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -39,7 +39,7 @@
                                     <h5 class="card-title">{{receta.nombre}}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted" >{{receta.nombreTipo}}</h6>
 
-                                    <button type="button" (click)="openFormModal(receta.id, receta.nombre)" class="btn btn-dark">
+                                    <button type="button" (click)="abrirModalDetalles(receta.id)" class="btn btn-dark">
                                         Ver detalles
                                     </button>
                                 </div>
@@ -69,23 +69,17 @@
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
-          (click)="closeModal()"
+          (click)="cerrarModalDetalles()"
         ></button>
       </div>
       <div class="modal-body">
-        <h2>{{showRecetaModal.nombre}}</h2>
+        <h2>{{receta.nombre}}</h2>
         <h3>Ingredientes:</h3>
         <ul >
-          <li *ngFor="let insumo of showRecetaModal.insumos "> {{insumo.nombre}} </li>
+          <li *ngFor="let insumo of receta.insumos "> {{insumo.nombre}} </li>
         </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">
-          Cancelar
-        </button>
-        <button type="button" class="btn btn-primary" (click)="saveSomeThing()">
-          Guardar cambios
-        </button>
       </div>
     </div>
   </div>
