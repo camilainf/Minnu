@@ -36,10 +36,11 @@
                         <div class="col-lg-3 col-md-6 col-sm-12" align="center" *ngFor="let receta of recetas">
                             <div class="card p-3 mb-3 ph-100 mt-4">
                                 <div class="card-body">
+                                    <h4 class="card-title">id : {{receta.id}}</h4>
                                     <h5 class="card-title">{{receta.nombre}}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted" >{{receta.nombreTipo}}</h6>
 
-                                    <button type="button" (click)="openFormModal()" class="btn btn-dark">
+                                    <button type="button" (click)="openFormModal(receta.id, receta.nombre)" class="btn btn-dark">
                                         Ver detalles
                                     </button>
                                 </div>
@@ -73,13 +74,10 @@
         ></button>
       </div>
       <div class="modal-body">
-        <h2>Pure con Huevo</h2>
+        <h2>{{showRecetaModal.nombre}}</h2>
         <h3>Ingredientes:</h3>
-        <ul>
-          <li>Pure</li>
-          <li>Huevo</li>
-          <li>Aceite</li>
-          <li>Sal</li>
+        <ul >
+          <li *ngFor="let insumo of showRecetaModal.insumos "> {{insumo.nombre}} </li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -142,7 +140,7 @@
           <!-- FORM INSUMOS -->
           <div class="mt-3">
             <mat-form-field class="example-chip-list" appearance="fill">
-              <mat-label class="texto-label">Insumos</mat-label>
+              <mat-label class="texto-label text-dark">Insumos</mat-label>
               <mat-chip-list  #chipList aria-label="Seleccion de Insumo" >
                 <mat-chip
                   *ngFor="let insumo of insumosEnMuestra"

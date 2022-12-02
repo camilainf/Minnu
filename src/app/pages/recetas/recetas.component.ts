@@ -43,6 +43,9 @@ export class RecetasComponent implements OnInit {
   insumosCtrl = new FormControl('');
   filteredInsumos: Observable<string[]>;
 
+
+  showRecetaModal: Receta = {} as Receta;
+
   @ViewChild('insumosInput') insumosInput: ElementRef<HTMLInputElement> | undefined;
 
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -86,17 +89,21 @@ export class RecetasComponent implements OnInit {
       for(let i in this.totalInsumos){
         this.insumosName.push(this.totalInsumos[i].nombre);
       }
-      console.log(this.insumosName,this.totalInsumos);
+      /* console.log(this.insumosName,this.totalInsumos); */
     })
 
     // CARGA DE RECETAS MAS SU TIPO Y SUS INSUMOS
     this.recetasService.cargarRecetas().subscribe((data) =>{
 
       for(let recip of data) {
-        let recipe = this.recetasMapper.mapDTOtoReceta(recip as RecetaDTO);
-        this.tiposRecetasService.getTipoRecetaByIdReceta(recipe.idTipoReceta).subscribe((data)=>{
-          recipe.tipoReceta = data.body[0];
 
+        let recipe = this.recetasMapper.mapDTOtoReceta(recip as RecetaDTO);
+
+        /* console.log(recipe.idTipoReceta); */
+
+        this.tiposRecetasService.getTipoRecetaByIdReceta(recipe.id).subscribe((data)=>{
+          recipe.tipoReceta = data.body[0];
+          /* console.log(data.body[0]) */
         })   
         
         this.insumosService.cargarInsumoByRecipeId(recipe.id).subscribe((data)=>{
@@ -107,10 +114,13 @@ export class RecetasComponent implements OnInit {
               insumos.push(this.insumosMapper.mapDTOtoInsumo(ins as InsumoDTO));
             }
           }
-          
+          //console.log(insumos);
+
           recipe.insumos = insumos;
           this.recetas.push(recipe);
         }) 
+
+        /* console.log(this.recetas); */
       }
     })
     
@@ -165,8 +175,30 @@ export class RecetasComponent implements OnInit {
 
   
   // MODAL PARA VER DETALLES DE LA RECETA
-  openFormModal() {
+  openFormModal(id: number, receta: string) {
     this.formModal.show();
+
+    console.log(this.recetas);
+
+    /* console.log(id);
+    console.log(receta); */
+
+    const found = this.recetas.find(receta => receta.id === id );
+
+    if (found) {
+      this.showRecetaModal.id = found.id;
+      this.showRecetaModal.nombre = found.nombre;
+      this.showRecetaModal.tipoReceta = found.tipoReceta;
+      this.showRecetaModal.insumos = found.insumos;
+    }
+
+    console.log(found?.id);
+    console.log(found?.nombre);
+    console.log(found?.tipoReceta);
+    console.log(found?.insumos);
+
+    
+
   }
 
   saveSomeThing() {
