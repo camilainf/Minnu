@@ -1,8 +1,17 @@
-import { Menu } from '../menu/menu.type';
 
 export interface Regimen {
     id: number;
-    tipo: string;
-    almuerzo: number;
-    cena: number;
+    nombre: string;
 }
+
+export interface RegimenDTO {
+    idregimen: number;
+    regimen: string;
+}
+
+export interface NewReceta {
+    nombre: string,
+    tipoReceta: string,
+    insumos: number[]
+}
+
