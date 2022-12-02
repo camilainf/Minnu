@@ -17,7 +17,7 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     let formatoEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
-    let formatoUsername = /^.{1,10}$/
+    let formatoUsername = /^.{1,30}$/
     this.formRegistro = this.formBuilder.group({
       username: ['', Validators.compose([Validators.pattern(formatoUsername),Validators.required])],
       email: ['', Validators.compose([Validators.email, Validators.required,Validators.pattern(formatoEmail)])],
