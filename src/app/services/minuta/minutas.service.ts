@@ -1,5 +1,4 @@
 import {Minuta} from "./minuta.type"
-import { RegimenService } from "../regimen/regimen.services";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
