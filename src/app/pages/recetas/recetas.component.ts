@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { RecetasService } from '../../services/receta/recetas.service';
-import { Receta, RecetaDTO } from 'src/app/services/receta/receta.type';
+import { NewReceta, Receta, RecetaDTO } from 'src/app/services/receta/receta.type';
 import { RecetaMapper } from 'src/app/services/receta/receta.mapper';
 import { TipoReceta, TipoRecetaDTO } from 'src/app/services/tipo-receta/tipo-receta.type';
 import { TipoRecetaService } from 'src/app/services/tipo-receta/tipo-receta.service';
@@ -13,7 +13,7 @@ import {map, Observable, startWith} from 'rxjs';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { NewReceta } from 'src/app/services/regimen/regimen.type';
+import {Router} from "@angular/router";
 
 declare var window : any; 
 
@@ -33,6 +33,7 @@ export class RecetasComponent implements OnInit {
 
   recetas: Receta[] = [];
   receta: Receta = {} as Receta;
+  idreceta: number = {} as number;
 
   tiposRecetas: TipoReceta[] = [];
   tipoReceta: TipoReceta = {} as TipoReceta;
@@ -54,6 +55,7 @@ export class RecetasComponent implements OnInit {
     private tiposRecetasService: TipoRecetaService, 
     private formBuilder: FormBuilder,
     private insumosService: InsumosService,
+    private router:Router,
     private insumosMapper: InsumoMapper) {
       this.filteredInsumos = this.insumosCtrl.valueChanges.pipe(
         startWith(null),
@@ -101,7 +103,12 @@ export class RecetasComponent implements OnInit {
         let recipe = this.recetasMapper.mapDTOtoReceta(recip as RecetaDTO);
 
         this.tiposRecetasService.getTipoRecetaByIdReceta(recipe.id).subscribe((data)=>{
-          recipe.tipoReceta = data.body[0];
+
+          let {tiporeceta, idtiporeceta} = data.body[0];
+          recipe.tipoReceta = tiporeceta;
+          recipe.idTipoReceta = idtiporeceta;
+          this.idreceta = idtiporeceta;
+
         })   
         
         this.insumosService.cargarInsumoByRecipeId(recipe.id).subscribe((data)=>{
@@ -112,13 +119,12 @@ export class RecetasComponent implements OnInit {
               insumos.push(this.insumosMapper.mapDTOtoInsumo(ins as InsumoDTO));
             }
           }
-
+          
           recipe.insumos = insumos;
           this.recetas.push(recipe);
         }) 
       }
     })
-    
 
     this.modalDetallesReceta = new window.bootstrap.Modal(
       document.getElementById('myModal')
@@ -127,7 +133,6 @@ export class RecetasComponent implements OnInit {
     this.modalRegistroReceta = new window.bootstrap.Modal(
       document.getElementById('registroRecetaModal')
     )
-
   }
 
   // FORM RECETAS PARA AGREGAR INSUMOS
@@ -165,7 +170,6 @@ export class RecetasComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.insumosName.filter(insumos => insumos.toLowerCase().includes(filterValue));
   }
-
   
   // MODAL PARA VER DETALLES DE LA RECETA
   abrirModalDetalles(id: number) {
@@ -202,11 +206,19 @@ export class RecetasComponent implements OnInit {
     if (this.formRegistroReceta.status === 'VALID') {
       const receta: NewReceta = {
         nombre: this.formRegistroReceta.get('nombreReceta')!.value,
-        tipoReceta: this.formRegistroReceta.get('formTipoReceta')!.value,
+        idTipoReceta: this.idreceta,
         insumos: insumosToBack
       }
 
-      this.recetasService
+      this.recetasService.guardarReceta(receta).subscribe((response) => {
+        if(response.status == '200') {
+          this.router.navigate(['/recetas']);
+          window.location.reload()
+        } else {
+          console.log('error en la operacion')
+        }
+      })
+
     }
 
     this.modalRegistroReceta.hide();

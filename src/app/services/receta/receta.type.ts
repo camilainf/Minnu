@@ -15,3 +15,9 @@ export interface RecetaDTO {
     receta: string;
     insumos?: Insumo[];
 }
+
+export interface NewReceta {
+    nombre: string,
+    idTipoReceta: number;
+    insumos: number[]
+}

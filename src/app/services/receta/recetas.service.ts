@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Receta } from "./receta.type";
+import { NewReceta, Receta } from "./receta.type";
 import { Constant } from "src/environments/constants/constants";
 
 @Injectable({
@@ -20,8 +20,9 @@ export class RecetasService{
         return this.httpClient.get(url);
     }
 
-    /* cargarRecetasByID(): Observable<any> {
-        const url = Constant.API_URL + this.recetas_endpoint + '1';
-        return this.httpClient.get(url);
-    } */
+    guardarReceta(receta: NewReceta): Observable<any> {
+        const body = receta;
+        const url = Constant.API_URL + this.recetas_endpoint;
+        return this.httpClient.post(url, body, { headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')}),observe: 'response'});
+    }
 }
