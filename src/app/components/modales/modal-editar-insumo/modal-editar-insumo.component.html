@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Editar datos: {{data.nombreInsumo}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formularioEditInsumoForm">
+    <p>Editar nombre del insumo</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Nuevo nombre Insumo</mat-label>
+      <input  matInput formControlName="nombreInsumo" >
+    </mat-form-field>
+    <p>Editar gramos del insumo</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Nuevo gramaje</mat-label>
+      <input matInput formControlName="gramos">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="cerrarPopUpEditarInsumo()">Editar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</div>

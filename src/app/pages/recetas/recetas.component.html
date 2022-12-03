@@ -36,9 +36,19 @@
                         <div class="col-lg-3 col-md-6 col-sm-12" align="center" *ngFor="let receta of recetas">
                             <div class="card p-3 mb-3 ph-100 mt-4">
                                 <div class="card-body">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+                                      <button class="justify-content-md-end" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                        </svg>
+                                      </button>
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item"  (click)="abrirModalEditarReceta(receta.nombre, receta.id, receta.idTipoReceta, receta.insumos!)" >Editar</a>
+                                        <a class="dropdown-item" (click)="eliminarReceta(receta.id)">Eliminar</a>
+                                      </div>
+                                    </div>
                                     <h5 class="card-title">{{receta.nombre}}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted" >{{receta.nombreTipo}}</h6>
-
                                     <button type="button" (click)="abrirModalDetalles(receta.id)" class="btn btn-dark">
                                         Ver detalles
                                     </button>
@@ -63,7 +73,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detalles de la receta</h5>
+        <h5 class="modal-title">Detalles de la receta</h5>
         <button
           type="button"
           class="btn-close"
@@ -108,9 +118,10 @@
       <div class="modal-body">
         <!-- FORMULARIO PARA REGISTRAR RECETA -->
         <form class="fw-semibold formularioLogin" [formGroup]="formRegistroReceta">
+
           <!-- NOMBRE -->
           <div class="mb-4 form-group">
-              <label for="username" class="form-label">Nombre</label>
+              <label class="form-label">Nombre</label>
               <span *ngIf="formRegistroReceta.controls['nombreReceta'].invalid && (formRegistroReceta.controls['nombreReceta'].dirty || formRegistroReceta.controls['nombreReceta'].touched)" class="alert">
                   <small class="mensajeError" *ngIf="formRegistroReceta.controls['nombreReceta'].errors?.['required']">
                     * Ingrese su nombre.
@@ -123,12 +134,11 @@
           </div>
 
           <!-- TIPO RECETA -->
-          <label for="nombre" class="form-label">Tipo Receta</label>
+          <label class="form-label">Tipo Receta</label>
           <select class="form-control" formControlName="formTipoReceta" id="inputTipo">
             <option selected>Seleccione un tipo de receta </option>
             <option *ngFor="let tipo of tiposRecetas" [value]="tipo.nombreTipo">{{tipo.nombreTipo}}</option>
           </select>
-          <!-- <button (click)="probar()">prueba</button> -->
 
           <!-- FORM INSUMOS -->
           <div class="mt-3">

@@ -14,8 +14,11 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Router} from "@angular/router";
+import {ModalEditarInsumoComponent} from "../../components/modales/modal-editar-insumo/modal-editar-insumo.component";
+import {MatDialog} from "@angular/material/dialog";
+import {ModalEditarRecetaComponent} from "../../components/modales/modal-editar-receta/modal-editar-receta.component";
 
-declare var window : any; 
+declare var window : any;
 
 
 @Component({
@@ -52,19 +55,16 @@ export class RecetasComponent implements OnInit {
     private recetasService: RecetasService,
     private recetasMapper: RecetaMapper,
     private tipoRecetaMapper: TipoRecetaMapper,
-    private tiposRecetasService: TipoRecetaService, 
+    private tiposRecetasService: TipoRecetaService,
     private formBuilder: FormBuilder,
     private insumosService: InsumosService,
     private router:Router,
+    private matdialog:MatDialog,
     private insumosMapper: InsumoMapper) {
       this.filteredInsumos = this.insumosCtrl.valueChanges.pipe(
         startWith(null),
         map((insumo: string | null) => (insumo ? this._filter(insumo) : this.insumosName.slice())),
       )
-  }
-
-  probar(){
-    console.log(this.formRegistroReceta.get('formTipoReceta')!.value)
   }
 
   ngOnInit(): void {
@@ -76,7 +76,7 @@ export class RecetasComponent implements OnInit {
       formTipoReceta: ['', Validators.compose([Validators.pattern(formatoName),Validators.required])],
     })
 
-    
+
 
     // CARGAR TIPOSRECETAS
     this.tiposRecetasService.cargarTiposRecetas().subscribe((data)=>{
@@ -109,20 +109,20 @@ export class RecetasComponent implements OnInit {
           recipe.idTipoReceta = idtiporeceta;
           this.idreceta = idtiporeceta;
 
-        })   
-        
+        })
+
         this.insumosService.cargarInsumoByRecipeId(recipe.id).subscribe((data)=>{
           let insumos: Insumo[] = []
-          
+
           if(data.body.res) {
             for(let ins of data.body.res) {
               insumos.push(this.insumosMapper.mapDTOtoInsumo(ins as InsumoDTO));
             }
           }
-          
+
           recipe.insumos = insumos;
           this.recetas.push(recipe);
-        }) 
+        })
       }
     })
 
@@ -170,7 +170,7 @@ export class RecetasComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.insumosName.filter(insumos => insumos.toLowerCase().includes(filterValue));
   }
-  
+
   // MODAL PARA VER DETALLES DE LA RECETA
   abrirModalDetalles(id: number) {
     this.modalDetallesReceta.show();
@@ -218,11 +218,33 @@ export class RecetasComponent implements OnInit {
           console.log('error en la operacion')
         }
       })
-
     }
-
     this.modalRegistroReceta.hide();
   }
 
+  abrirModalEditarReceta(nombreReceta: string, idReceta: number, idTipoReceta: number, insumos: Insumo[], ){
+    const popup = this.matdialog
+      .open(ModalEditarRecetaComponent,
+        {
+          width: '30%',
+
+          data: {
+            idreceta: idReceta,
+            nombrereceta: nombreReceta,
+            tipoReceta: this.tiposRecetas.find(tipo => tipo.id == idTipoReceta)!,
+            insumos: insumos
+          }
+        }
+      )
+      .afterClosed()
+      .subscribe((shouldReload: boolean) => {
+        popup.unsubscribe();
+        if (shouldReload) window.location.reload()
+      });
+  }
+
+  eliminarReceta(id: number) {
+    this.recetasService.eliminarReceta(id).subscribe( response => window.location.reload())
+  }
 }
 

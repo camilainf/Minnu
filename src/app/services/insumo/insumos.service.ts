@@ -1,4 +1,4 @@
-import {Insumo, NewInsumo} from "./insumo.type"
+import {Insumo, InsumoDTO, NewInsumo} from "./insumo.type"
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders  } from "@angular/common/http";
 import { Observable } from "rxjs";
@@ -12,7 +12,7 @@ import { InsumoMapper } from "./insumo.mapper";
 export class InsumosService{
     private insumos_endpoint : string = '/insumos/';
     private insumos_endpoint2 : string = '/insumoss/';
-    
+
 
     constructor(private httpClient:HttpClient, private insumomapper: InsumoMapper){
     }
@@ -37,5 +37,15 @@ export class InsumosService{
         const url = Constant.API_URL + this.insumos_endpoint ;
         return this.httpClient.post(url, body, { headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')}),observe: 'response'});
     }
-    
+
+    editarInsumo(insumo: InsumoDTO ){
+      const body = insumo;
+      const url = Constant.API_URL + this.insumos_endpoint ;
+      return this.httpClient.put(url,body,{ headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')}),observe: 'response'})
+    }
+
+    eliminarInsumo(idInsumo: number){
+      return this.httpClient.delete(Constant.API_URL + this.insumos_endpoint+idInsumo,{ headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')}),observe: 'response'})
+    }
+
 }

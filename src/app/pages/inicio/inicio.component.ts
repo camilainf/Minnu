@@ -6,6 +6,8 @@ import { Minuta } from '../../services/minuta/minuta.type';
 import { InsumoMapper } from 'src/app/services/insumo/insumo.mapper';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
+import {ModalEditarInsumoComponent} from "../../components/modales/modal-editar-insumo/modal-editar-insumo.component";
+import {MatDialog} from "@angular/material/dialog";
 declare var window : any;
 
 @Component({
@@ -25,7 +27,9 @@ export class InicioComponent implements OnInit {
 
   minutas : Minuta[] = [];
 
-  constructor(private insumosService: InsumosService,private minutasService: MinutasService, private insumoMapper: InsumoMapper, private formBuilder: FormBuilder, private router: Router) {}
+  constructor(private insumosService: InsumosService,private minutasService: MinutasService,
+              private insumoMapper: InsumoMapper, private formBuilder: FormBuilder,
+              private router: Router, private matdialog:MatDialog) {}
 
   ngOnInit(): void {
     let formatoName = /^.{1,10}$/
@@ -43,12 +47,12 @@ export class InicioComponent implements OnInit {
     this.insumosService.cargarInsumoById(2).subscribe((data)=>{
       this.insumo = this.insumoMapper.mapDTOtoInsumo(data as InsumoDTO);
     })
- 
+
     // CARGA DE INSUMOS
     this.insumosService.cargarInsumos().subscribe((data)=>{
       for(let i in data) {
         this.insumos.push(this.insumoMapper.mapDTOtoInsumo(data[i] as InsumoDTO));
-      }  
+      }
     })
 
 
@@ -90,7 +94,36 @@ export class InicioComponent implements OnInit {
     this.formModalInsumo.hide();
   }
 
-  
+  // MODAL PARA EDITAR INSUMO
+
+  abrirModalEditarInsumo(nombreModal: string, gramos:number, id:number){
+    const popup = this.matdialog
+      .open(ModalEditarInsumoComponent,
+        {
+          width: '20%',
+          data: {
+            idInsumo: id,
+            nombreInsumo: nombreModal,
+            gramos: gramos,
+          }
+        }
+      )
+      .afterClosed()
+      .subscribe((shouldReload: boolean) => {
+        popup.unsubscribe();
+        if (shouldReload) window.location.reload()
+      });
+  }
+
+  // Eliminar insumo
+
+  eliminarInsumo(id: number){
+    this.insumosService.eliminarInsumo(id).subscribe(res => {
+      console.log(res);
+      window.location.reload()
+    })
+  }
+
   // VER DETALLES MINUTAS
   openFormModalMinuta() {
     this.formModalMinuta.show();
@@ -112,5 +145,7 @@ export class InicioComponent implements OnInit {
   guardarCambiosRegistro() {
     this.modalRegistroMinuta.hide();
   }
+
+
 
 }
