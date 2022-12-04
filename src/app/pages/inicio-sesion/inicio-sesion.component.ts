@@ -26,28 +26,27 @@ export class InicioSesionComponent implements OnInit {
         Validators.required
       ])],
     }
-    this.formularioLoginForm = this.formBuilder.group(form); 
+    this.formularioLoginForm = this.formBuilder.group(form);
   }
 
   login() {
-    console.log(this.formularioLoginForm.status);
-
     if (this.formularioLoginForm.status === 'VALID') {
+
       const email = this.formularioLoginForm.get('email')!.value;
       const pass = this.formularioLoginForm.get('password')!.value;
 
       this.userService.login(email, pass).subscribe((res)=>{
-        console.log('res: ',res.body);
         if(res.status == '200') {
           this.userService.user = this.userMapper.mapDTOtoUser(res.body.user as UserInDTO)
           console.log(this.userService.getUser());
           localStorage.setItem('token',res.body.token);
+          localStorage.setItem('user', JSON.stringify((this.userService.getUser())));
           this.router.navigate(['/inicio'])
         } else {
           console.log('ERROR EN EL LOGIN');
         }
       })
-      
+
     } else {
       console.log('Faltan datos por ingresar');
     }
