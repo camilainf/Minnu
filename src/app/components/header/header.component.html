@@ -7,11 +7,22 @@
         <h1 id="nnu" class="fw-bold">nnu</h1>
       </a>
 
-      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <h1 *ngIf="esAdmin()" class="px-5 text-white"> Admin </h1>
+
+      <button
+        class="navbar-toggler"
+        type="button" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- LISTA DE ICONOS DE LA DERECHA -->
+      <!-- SECCIONES -->
       <div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="isCollapsed">
         <ul class="navbar-nav ms-auto">
 
@@ -22,7 +33,7 @@
             </a>
           </li>
 
-          <!-- MENUS -->  
+          <!-- MENUS -->
           <li class="nav-item mx-1 rounded-4">
             <a class="nav-link" routerLink="/menus">
               <h4>Menus</h4>
@@ -30,11 +41,20 @@
           </li>
 
           <!-- LOGOUT -->
-          <li class="nav-item mx-1 rounded-4">
-            <button class="nav-link" routerLink="/iniciosesion" (click)="cerrarSesion()">
-              <img src="../../assets/images/iconos/logout.png" width="30" height="30" class="d-inline-block align-top" title="Cerrar sesion">
+          <li class="nav-item mx-1 me-4 rounded-4 ">
+            <button
+              type="button"
+              class="nav-link btn btn-danger"
+              routerLink="/iniciosesion"
+              (click)="cerrarSesion()"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
+                <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"/>
+                <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+              </svg>
             </button>
           </li>
+
         </ul>
       </div>
     </div>
