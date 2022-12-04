@@ -8,7 +8,7 @@ import { MenusComponent } from './pages/menus/menus.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
 
 const routes: Routes = [
-  {path:'',component: InicioComponent},
+  {path:'',component: InicioSesionComponent},
   {path:'inicio',component: InicioComponent},
   {path:'iniciosesion', component: InicioSesionComponent},
   {path:'passrecover', component: PassRecoverComponent},
