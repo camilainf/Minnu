@@ -3,6 +3,7 @@ import { AbstractType, Component, OnInit } from '@angular/core';
 import { InsumosService } from '../../services/insumo/insumos.service';
 import { MinutasService } from '../../services/minuta/minutas.service';
 import { Minuta } from '../../services/minuta/minuta.type';
+import { UserIn } from '../../services/usuario/usuario.type';
 import { InsumoMapper } from 'src/app/services/insumo/insumo.mapper';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
@@ -146,6 +147,18 @@ export class InicioComponent implements OnInit {
     this.modalRegistroMinuta.hide();
   }
 
+  esAdmin(): boolean {
+    if ( localStorage.getItem('user') ) {
+      let usuario: UserIn = JSON.parse(localStorage.getItem('user')!);
+
+      if ( usuario.isAdmin ) {
+        return true;
+      }
+    }
+
+    return false;
+
+  }
 
 
 }

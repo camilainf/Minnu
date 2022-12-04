@@ -1,6 +1,6 @@
 <app-header></app-header>
 <body class="pt-5">
-    <div class="container alto-100 border border-1 rounded-4 shadow color-container">
+    <div class="container alto-100 border border-1 rounded-4 shadow shadow-md color-container">
         <div class="row">
             <div class="col" >
                 <div class="container my-4 ">
@@ -23,7 +23,7 @@
                                 </button>
                                 <!-- boton agregar -->
                                 <button class="btn btn-outline-black border border-dark me-2" type="button" (click)="openRegistroModal()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-plus-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                                       </svg>
@@ -34,15 +34,11 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12" align="center" *ngFor="let menu of menus">
                             <div class="card p-3 mb-3 ph-100 mt-4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Menu {{menu.regimen}}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Raciones: {{menu.raciones}}</h6>
-                                    <!-- <h6 class="card-subtitle mb-2 text-muted">Raciones: {{cantidadRaciones(regimen)}}</h6> -->
-                                    <button type="button" (click)="openFormModal()" class="btn btn-dark">
-                                        Ver detalles
-                                    </button>
-                                    <!-- <a href="" class="btn btn-secondary d-grid ">Ver detalles</a> -->
-                                </div>
+                              <div class="card-details">
+                                <p class="text-title">Menu {{menu.regimen}}</p>
+                                <p class="text-body">Raciones: {{menu.raciones}}</p>
+                              </div>
+                              <button class="card-button color-button" (click)="openFormModal()" >Ver detalles</button>
                             </div>
                         </div>
                     </div>
@@ -63,7 +59,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title " id="exampleModalLabel">Detalles del menú</h5>
+        <h5 class="modal-title ">Detalles del menú</h5>
         <button
           type="button"
           class="btn-close"

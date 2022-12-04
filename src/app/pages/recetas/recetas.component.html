@@ -1,65 +1,70 @@
 <app-header></app-header>
 <body class="pt-5">
-    <div class="container alto-100 border border-1 rounded-4 shadow color-container">
-        <div class="row">
-            <div class="col" >
-                <div class="container my-4">
-                    <div class="row">
-                        <!-- TITULO Y BUSCADOR -->
-                        <div class="col-6" align="end">
-                            <span class=" h2 mb-3">Recetas</span>
-                        </div>
-                        <div class="col-6">
-                            <form class="d-flex ps-5 pe-5" role="search">
-                                <!-- input buscador -->
-                                <input class="form-control me-2 border border-dark" type="search" placeholder="Ingrese nombre de receta"
-                                    aria-label="Search">
-                                <!-- boton buscar -->
-                                <button class="btn btn-outline-black border border-dark me-2" type="submit">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-search" viewBox="0 0 16 16">
-                                        <path
-                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                    </svg>
-                                </button>
-                                <!-- boton agregar -->
-                                <button class="btn btn-outline-black border border-dark me-2" type="button" (click)="abrirModalRegistro()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                                      </svg>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-12" align="center" *ngFor="let receta of recetas">
-                            <div class="card p-3 mb-3 ph-100 mt-4">
-                                <div class="card-body">
-                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
-                                      <button class="justify-content-md-end" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                                        </svg>
-                                      </button>
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item"  (click)="abrirModalEditarReceta(receta.nombre, receta.id, receta.idTipoReceta, receta.insumos!)" >Editar</a>
-                                        <a class="dropdown-item" (click)="eliminarReceta(receta.id)">Eliminar</a>
-                                      </div>
-                                    </div>
-                                    <h5 class="card-title">{{receta.nombre}}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted" >{{receta.nombreTipo}}</h6>
-                                    <button type="button" (click)="abrirModalDetalles(receta.id)" class="btn btn-dark">
-                                        Ver detalles
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="container alto-100 border border-1 rounded-4 shadow color-container">
+    <div class="row">
+      <div class="col">
+        <div class="container my-4">
+          <div class="row">
+            <!-- TITULO Y BUSCADOR -->
+            <div class="col-6" align="end">
+              <span class=" h2 mb-3">Recetas</span>
             </div>
+            <div class="col-6">
+              <form class="d-flex ps-5 pe-5" role="search">
+                <!-- input buscador -->
+                <input class="form-control me-2 border border-dark" type="search" placeholder="Ingrese nombre de receta"
+                       aria-label="Search">
+                <!-- boton buscar -->
+                <button class="btn btn-outline-black border border-dark me-2" type="submit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                       class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                </button>
+                <!-- boton agregar -->
+                <button class="btn btn-outline-black border border-dark me-2" type="button"
+                        (click)="abrirModalRegistro()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                       class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12" align="center" *ngFor="let receta of recetas">
+
+              <div class="card p-3 mb-3 ph-100 mt-4">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+                  <button class="justify-content-md-end" type="button" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                      <path
+                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                    </svg>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item"
+                       (click)="abrirModalEditarReceta(receta.nombre, receta.id, receta.idTipoReceta, receta.insumos!)">Editar</a>
+                    <a class="dropdown-item" (click)="eliminarReceta(receta.id)">Eliminar</a>
+                  </div>
+                </div>
+                <div class="card-details">
+                  <p class="text-title">{{receta.nombre}}</p>
+                  <p class="text-body">{{receta.nombreTipo}}</p>
+                </div>
+                <button class="card-button color-button" (click)="abrirModalDetalles(receta.id)" >More info</button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </body>
 
 <!-- MODAL VER DETALLES -->
@@ -85,7 +90,7 @@
       <div class="modal-body">
         <h2>{{receta.nombre}}</h2>
         <h3>Ingredientes:</h3>
-        <ul >
+        <ul>
           <li *ngFor="let insumo of receta.insumos "> {{insumo.nombre}} </li>
         </ul>
       </div>
@@ -121,8 +126,10 @@
 
           <!-- NOMBRE -->
           <div class="mb-4 form-group">
-              <label class="form-label">Nombre</label>
-              <span *ngIf="formRegistroReceta.controls['nombreReceta'].invalid && (formRegistroReceta.controls['nombreReceta'].dirty || formRegistroReceta.controls['nombreReceta'].touched)" class="alert">
+            <label class="form-label">Nombre</label>
+            <span
+              *ngIf="formRegistroReceta.controls['nombreReceta'].invalid && (formRegistroReceta.controls['nombreReceta'].dirty || formRegistroReceta.controls['nombreReceta'].touched)"
+              class="alert">
                   <small class="mensajeError" *ngIf="formRegistroReceta.controls['nombreReceta'].errors?.['required']">
                     * Ingrese su nombre.
                   </small>
@@ -130,13 +137,13 @@
                     * Supero el maximo de 10 caracteres.
                   </small>
               </span>
-              <input type="nombreReceta" class="form-control" formControlName="nombreReceta" placeholder="Nombre receta">
+            <input type="nombreReceta" class="form-control" formControlName="nombreReceta" placeholder="Nombre receta">
           </div>
 
           <!-- TIPO RECETA -->
           <label class="form-label">Tipo Receta</label>
           <select class="form-control" formControlName="formTipoReceta" id="inputTipo">
-            <option selected>Seleccione un tipo de receta </option>
+            <option selected>Seleccione un tipo de receta</option>
             <option *ngFor="let tipo of tiposRecetas" [value]="tipo.nombreTipo">{{tipo.nombreTipo}}</option>
           </select>
 
@@ -144,11 +151,11 @@
           <div class="mt-3">
             <mat-form-field class="example-chip-list" appearance="fill">
               <mat-label class="texto-label text-dark">Insumos</mat-label>
-              <mat-chip-list  #chipList aria-label="Seleccion de Insumo" >
+              <mat-chip-list #chipList aria-label="Seleccion de Insumo">
                 <mat-chip
                   *ngFor="let insumo of insumosEnMuestra"
                   (removed)="remove(insumo)">
-                    {{insumo}}
+                  {{insumo}}
                   <button matChipRemove>
                     <mat-icon>cancel</mat-icon>
                   </button>
