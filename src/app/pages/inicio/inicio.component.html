@@ -7,12 +7,12 @@
       <div class="col text-center">
         <!-- CAJA DE MINUTAS -->
         <div class="container mt-4 alto-100 border border-1 rounded-4 shadow color-container">
+<!--          TITULO CAJA + BUSCADOR-->
           <div class="row my-4">
-            <div class="col-6" align="end">
+            <div class="col-5">
               <span class=" h2 mb-3">Minutas</span>
             </div>
-            <div class="col-6">
-
+            <div class="col-7">
               <form class="d-flex ps-5 pe-5" role="search">
                 <!-- input buscador -->
                 <input class="form-control me-2 border border-dark" type="search" placeholder=""
@@ -38,8 +38,9 @@
               </form>
             </div>
           </div>
+<!--          ROW DE MINUTAS-->
           <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let minuta of minutas">
+            <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let minuta of minutas">
               <div class="card p-3 mb-3 ph-100 mt-4">
                 <div class="card-details">
                   <p class="text-title">{{minuta.nombreMinuta}}</p>
@@ -93,10 +94,10 @@
             <div class="col mb-3 ">
               <div class="row" *ngFor="let insumo of insumos">
 
-                <div class="col">
+                <div class="col-6 col-md-5 col-lg-6 ">
                   <h4>{{insumo.nombre}}</h4>
                 </div>
-                <div class="col">
+                <div class="col-6 col-md-7 col-lg-6">
                   <div class="d-flex flex-row-reverse">
 <!--                    EDITAR-->
                     <button

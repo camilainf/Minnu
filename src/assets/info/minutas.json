@@ -8,5 +8,15 @@
         "id":2,
         "nombreMinuta": "Minuta 2",
         "regimenes": [3,2,1]
+    },
+    {
+        "id":3,
+        "nombreMinuta": "Minuta 3",
+        "regimenes": [3,2,1]
+    },
+    {
+        "id":3,
+        "nombreMinuta": "Minuta 4",
+        "regimenes": [3,2,1]
     }
 ]
