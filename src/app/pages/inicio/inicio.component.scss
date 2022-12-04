@@ -1,1 +1,10 @@
-$button-color: #A286EC;
+$delete-color: #be4b62;
+$edit-color: #aed584;
+
+.btn-delete-color{
+  background-color: $delete-color;
+}
+
+.btn-edit-color{
+  background-color: $edit-color;
+}
