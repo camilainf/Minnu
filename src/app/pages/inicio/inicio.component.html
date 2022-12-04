@@ -75,8 +75,8 @@
                   </svg>
                 </button>
                 <!-- boton agregar -->
-                <button class="btn btn-outline-black border border-dark me-2" type="button"
-                        (click)="openFormModalInsumo()" *ngIf="esAdmin()">
+                <button *ngIf="esAdmin()" class="btn btn-outline-black border border-dark me-2" type="button"
+                        (click)="openFormModalInsumo()" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                        class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"

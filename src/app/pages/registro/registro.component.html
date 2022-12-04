@@ -16,7 +16,7 @@
                 <form class="fw-semibold formularioLogin" [formGroup]="formRegistro" (ngSubmit)="signIn()">
                     <!-- NOMBRE -->
                     <div class="mb-4 form-group">
-                        <label for="username" class="form-label">Nombre</label>
+                        <label class="form-label">Nombre</label>
                         <span *ngIf="formRegistro.controls['username'].invalid && (formRegistro.controls['username'].dirty || formRegistro.controls['username'].touched)" class="alert">
                             <small class="mensajeError" *ngIf="formRegistro.controls['username'].errors?.['required']">
                               * Ingrese su nombre.
@@ -30,7 +30,7 @@
 
                     <!-- CORREO ELECTRONICO -->
                     <div class="mb-4 form-group">
-                        <label for="email" class="form-label">Correo electronico</label>
+                        <label class="form-label">Correo electronico</label>
                         <span *ngIf="formRegistro.controls['email'].invalid && (formRegistro.controls['email'].dirty || formRegistro.controls['email'].touched)" class="alert">
                             <small class="mensajeError" *ngIf="formRegistro.controls['email'].errors?.['required']">
                               * Ingrese su correo electronico.
@@ -44,7 +44,7 @@
 
                     <!-- CONTRASEÑA -->
                     <div class="mb-4 form-group" formGroupName="passwords">
-                        <label for="password" class="form-label">Contraseña</label>
+                        <label class="form-label">Contraseña</label>
                         <span *ngIf="passControls['password'].invalid && (passControls['password'].dirty || passControls['password'].touched)" class="alert">
                             <small class="mensajeError" *ngIf="passControls['password'].errors?.['required']">
                                 * Ingrese su contraseña
@@ -69,7 +69,7 @@
                     <!-- CHECK BOX -->
                     <div class="pt-3 form-check">
                         <input type="checkbox" class="form-check-input" formControlName="cb">
-                        <label class="form-check-label mb-4" for="exampleCheck1"> Acepto los terminos y condiciones </label>
+                        <label class="form-check-label mb-4"> Acepto los terminos y condiciones </label>
                         <span *ngIf="formRegistro.hasError('required', 'cb')">
                             <small class="mensajeError" *ngIf="formRegistro.controls['username'].errors?.['required']">
                               * Requerido.
@@ -80,7 +80,7 @@
                         <button class="w-100 btn btn-lg btn-login-color text-white" type="submit"  [disabled]="!formRegistro.valid">Crear cuenta</button>
                     </div>
                 </form>
-                
+
             </div>
         </div>
     </div>

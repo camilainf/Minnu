@@ -19,7 +19,7 @@ export class UserService {
         const body = this.userMapper.mapUserRegisterToDTO(user);
         const url = Constant.API_URL + '/users';
         const request = this.httpClient.post(url, body, {observe : 'response'});
-        
+
         return request;
     }
 
@@ -27,7 +27,6 @@ export class UserService {
         const body = this.userMapper.mapLoginToBody(email, pass);
         const url = Constant.API_URL + '/login';
         const request = this.httpClient.post(url, body, {observe: 'response'});
-        
         return request;
     }
 
