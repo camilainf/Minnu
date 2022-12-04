@@ -1,5 +1,5 @@
-$delete-color: #be4b62;
-$edit-color: #aed584;
+$delete-color: #b2334d;
+$edit-color: #93b966;
 
 .btn-delete-color{
   background-color: $delete-color;
@@ -8,3 +8,14 @@ $edit-color: #aed584;
 .btn-edit-color{
   background-color: $edit-color;
 }
+
+.btn-delete-color:hover{
+  transform: translate(-3%, 3%);
+  background-color: $delete-color;
+}
+
+.btn-edit-color:hover{
+  transform: translate(-3%, 3%);
+  background-color: $edit-color;
+}
+
